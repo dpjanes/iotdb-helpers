@@ -44,7 +44,6 @@ var modules = [
     require('./lib/convert'),
     require('./lib/random'),
     require('./lib/q'),
-    require('./lib/version'),
     require('./lib/logger'),
 ];
 for (var mi in modules) {
