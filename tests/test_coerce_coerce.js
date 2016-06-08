@@ -25,6 +25,9 @@
 const assert = require("assert");
 const coerce = require("../lib/coerce");
 
+const all_types = [ "iot:type.null", "iot:type.boolean", "iot:type.integer", "iot:type.number", "iot:type.string", ];
+const otherwise = "otherwise";
+
 describe("coerce", function() {
     describe("coerce", function() {
         describe("simple", function() {
@@ -300,60 +303,102 @@ describe("coerce", function() {
             });
         });
         describe("preferred", function() {
-            const types = [ "iot:type.null", "iot:type.boolean", "iot:type.integer", "iot:type.number", "iot:type.string", ];
             it("null", function() {
-                assert.strictEqual(coerce.coerce(null, types), null);
+                assert.strictEqual(coerce.coerce(null, all_types), null);
             });
             it("boolean(false)", function() {
-                assert.strictEqual(coerce.coerce(false, types), false);
+                assert.strictEqual(coerce.coerce(false, all_types), false);
             });
             it("boolean(true)", function() {
-                assert.strictEqual(coerce.coerce(true, types), true);
+                assert.strictEqual(coerce.coerce(true, all_types), true);
             });
             it("integer(0)", function() {
-                assert.strictEqual(coerce.coerce(0, types), 0);
+                assert.strictEqual(coerce.coerce(0, all_types), 0);
             });
             it("integer(positive)", function() {
-                assert.strictEqual(coerce.coerce(88, types), 88);
+                assert.strictEqual(coerce.coerce(88, all_types), 88);
             });
             it("integer(negative)", function() {
-                assert.strictEqual(coerce.coerce(-110, types), -110);
+                assert.strictEqual(coerce.coerce(-110, all_types), -110);
             });
             it("number(positive)", function() {
-                assert.strictEqual(coerce.coerce(88.1, types), 88.1);
+                assert.strictEqual(coerce.coerce(88.1, all_types), 88.1);
             });
             it("number(negative)", function() {
-                assert.strictEqual(coerce.coerce(-110.9, types), -110.9);
+                assert.strictEqual(coerce.coerce(-110.9, all_types), -110.9);
             });
             it("string(empty)", function() {
-                assert.strictEqual(coerce.coerce("", types), "");
+                assert.strictEqual(coerce.coerce("", all_types), "");
             });
             it("string(text)", function() {
-                assert.strictEqual(coerce.coerce("hello", types), "hello");
+                assert.strictEqual(coerce.coerce("hello", all_types), "hello");
             });
             it("string(0)", function() {
-                assert.strictEqual(coerce.coerce("0", types), "0");
+                assert.strictEqual(coerce.coerce("0", all_types), "0");
             });
             it("string(falsey-no)", function() {
-                assert.strictEqual(coerce.coerce("no", types), "no");
+                assert.strictEqual(coerce.coerce("no", all_types), "no");
             });
             it("string(falsey-false)", function() {
-                assert.strictEqual(coerce.coerce("false", types), "false");
+                assert.strictEqual(coerce.coerce("false", all_types), "false");
             });
             it("string(falsey-off)", function() {
-                assert.strictEqual(coerce.coerce("off", types), "off");
+                assert.strictEqual(coerce.coerce("off", all_types), "off");
             });
             it("string(positive-integer)", function() {
-                assert.strictEqual(coerce.coerce("99", types), "99");
+                assert.strictEqual(coerce.coerce("99", all_types), "99");
             });
             it("string(negative-integer)", function() {
-                assert.strictEqual(coerce.coerce("-99", types), "-99");
+                assert.strictEqual(coerce.coerce("-99", all_types), "-99");
             });
             it("string(negative-integer)", function() {
-                assert.strictEqual(coerce.coerce("99.9", types), "99.9");
+                assert.strictEqual(coerce.coerce("99.9", all_types), "99.9");
             });
             it("string(negative-integer)", function() {
-                assert.strictEqual(coerce.coerce("-99.9", types), "-99.9");
+                assert.strictEqual(coerce.coerce("-99.9", all_types), "-99.9");
+            });
+        });
+        describe("bad value", function() {
+            it("undefined - no otherwise", function() {
+                assert.strictEqual(undefined, coerce.coerce(undefined, all_types));
+            });
+            it("undefined", function() {
+                assert.strictEqual(otherwise, coerce.coerce(undefined, all_types, otherwise));
+            });
+            it("dictionary(empty)", function() {
+                assert.strictEqual(otherwise, coerce.coerce({}, all_types, otherwise));
+            });
+            it("dictionary(full)", function() {
+                assert.strictEqual(otherwise, coerce.coerce({ a: 1 }, all_types, otherwise));
+            });
+            it("array(empty)", function() {
+                assert.strictEqual(otherwise, coerce.coerce([], all_types, otherwise));
+            });
+            it("array(full)", function() {
+                assert.strictEqual(otherwise, coerce.coerce([ 1, 2, 3 ], all_types, otherwise));
+            });
+            it("function", function() {
+                assert.strictEqual(otherwise, coerce.coerce(() => {}, all_types, otherwise));
+            });
+            it("class", function() {
+                assert.strictEqual(otherwise, coerce.coerce(Date, all_types, otherwise));
+            });
+            it("object", function() {
+                assert.strictEqual(otherwise, coerce.coerce(new Date(), all_types, otherwise));
+            });
+        });
+        describe("no types", function() {
+            it("bad value - stil does the usual", function() {
+                const value = new Date();
+                assert.strictEqual(otherwise, coerce.coerce(value, [], otherwise))
+            });
+            it("integer-0", function() {
+                const value = new Date();
+                assert.strictEqual(0, coerce.coerce(0, [], otherwise))
+            });
+            it("string-text", function() {
+                const value = new Date();
+                assert.strictEqual("hello", coerce.coerce("hello", [], otherwise))
             });
         });
     });
