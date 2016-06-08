@@ -23,7 +23,7 @@
 "use strict";
 
 const assert = require("assert");
-const coerce = require("../lib/coerce");
+const coerce = require("../lib/coerce").coerce;
 
 const all_types = [ "iot:type.null", "iot:type.boolean", "iot:type.integer", "iot:type.number", "iot:type.string", ];
 const otherwise = "otherwise";

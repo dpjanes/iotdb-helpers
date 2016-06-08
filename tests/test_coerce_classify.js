@@ -23,7 +23,7 @@
 "use strict";
 
 const assert = require("assert");
-const coerce = require("../lib/coerce");
+const coerce = require("../lib/coerce").coerce;
 
 describe("coerce", function() {
     describe("classify", function() {

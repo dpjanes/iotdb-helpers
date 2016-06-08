@@ -45,6 +45,7 @@ var modules = [
     require('./lib/random'),
     require('./lib/q'),
     require('./lib/logger'),
+    require('./lib/coerce'),
 ];
 for (var mi in modules) {
     var module = modules[mi];
