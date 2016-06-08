@@ -23,7 +23,7 @@
 "use strict";
 
 const assert = require("assert");
-const coerce = require("./coerce");
+const coerce = require("../lib/coerce");
 
 describe("coerce", function() {
     describe("coerce", function() {
@@ -297,6 +297,63 @@ describe("coerce", function() {
                 it("->number", function() {
                     assert.strictEqual(coerce.coerce("-99.1", "iot:type.number"), -99.1);
                 });
+            });
+        });
+        describe("preferred", function() {
+            const types = [ "iot:type.null", "iot:type.boolean", "iot:type.integer", "iot:type.number", "iot:type.string", ];
+            it("null", function() {
+                assert.strictEqual(coerce.coerce(null, types), null);
+            });
+            it("boolean(false)", function() {
+                assert.strictEqual(coerce.coerce(false, types), false);
+            });
+            it("boolean(true)", function() {
+                assert.strictEqual(coerce.coerce(true, types), true);
+            });
+            it("integer(0)", function() {
+                assert.strictEqual(coerce.coerce(0, types), 0);
+            });
+            it("integer(positive)", function() {
+                assert.strictEqual(coerce.coerce(88, types), 88);
+            });
+            it("integer(negative)", function() {
+                assert.strictEqual(coerce.coerce(-110, types), -110);
+            });
+            it("number(positive)", function() {
+                assert.strictEqual(coerce.coerce(88.1, types), 88.1);
+            });
+            it("number(negative)", function() {
+                assert.strictEqual(coerce.coerce(-110.9, types), -110.9);
+            });
+            it("string(empty)", function() {
+                assert.strictEqual(coerce.coerce("", types), "");
+            });
+            it("string(text)", function() {
+                assert.strictEqual(coerce.coerce("hello", types), "hello");
+            });
+            it("string(0)", function() {
+                assert.strictEqual(coerce.coerce("0", types), "0");
+            });
+            it("string(falsey-no)", function() {
+                assert.strictEqual(coerce.coerce("no", types), "no");
+            });
+            it("string(falsey-false)", function() {
+                assert.strictEqual(coerce.coerce("false", types), "false");
+            });
+            it("string(falsey-off)", function() {
+                assert.strictEqual(coerce.coerce("off", types), "off");
+            });
+            it("string(positive-integer)", function() {
+                assert.strictEqual(coerce.coerce("99", types), "99");
+            });
+            it("string(negative-integer)", function() {
+                assert.strictEqual(coerce.coerce("-99", types), "-99");
+            });
+            it("string(negative-integer)", function() {
+                assert.strictEqual(coerce.coerce("99.9", types), "99.9");
+            });
+            it("string(negative-integer)", function() {
+                assert.strictEqual(coerce.coerce("-99.9", types), "-99.9");
             });
         });
     });
