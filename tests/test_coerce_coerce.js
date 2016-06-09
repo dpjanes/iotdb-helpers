@@ -36,16 +36,16 @@ describe("coerce", function() {
                     assert.strictEqual(coerce.coerce(null, "iot:type.null"), null);
                 });
                 it("->boolean", function() {
-                    assert.strictEqual(coerce.coerce(null, "iot:type.boolean"), false);
+                    assert.strictEqual(coerce.coerce(null, "iot:type.boolean"), undefined);
                 });
                 it("->integer", function() {
-                    assert.strictEqual(coerce.coerce(null, "iot:type.integer"), 0);
+                    assert.strictEqual(coerce.coerce(null, "iot:type.integer"), undefined);
                 });
                 it("->number", function() {
-                    assert.strictEqual(coerce.coerce(null, "iot:type.number"), 0);
+                    assert.strictEqual(coerce.coerce(null, "iot:type.number"), undefined);
                 });
                 it("->string", function() {
-                    assert.strictEqual(coerce.coerce(null, "iot:type.string"), "");
+                    assert.strictEqual(coerce.coerce(null, "iot:type.string"), undefined);
                 });
             });
             describe("boolean(false)", function() {
