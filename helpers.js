@@ -46,6 +46,7 @@ var modules = [
     require('./lib/q'),
     require('./lib/logger'),
     require('./lib/coerce'),
+    require('./lib/cfg'),
 ];
 for (var mi in modules) {
     var module = modules[mi];
@@ -67,3 +68,11 @@ exports.make_error = function (done) {
         done(error);
     };
 };
+
+
+/*
+_.noop = () => {};
+_.make_done = (done) => (value) => done(null, value);
+_.make_error = (done) => (error) => done(error);
+
+*/

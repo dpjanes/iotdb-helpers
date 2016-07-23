@@ -226,169 +226,169 @@ describe('test_d:', function() {
             });
         });
     });
-    describe('smart_extend', function() {
+    describe('compose.deep', function() {
         it('call - empty', function() {
-            var od = _.d.smart_extend({});
-            var xd = {};
-            assert.ok(_.is.Equal(od, xd));
+            var od = _.d.compose.deep({});
+            const expectd = {};
+            assert.ok(_.is.Equal(od, expectd));
         });
         it('call - empty', function() {
-            var od = _.d.smart_extend({}, {});
-            var xd = {};
-            assert.ok(_.is.Equal(od, xd));
+            var od = _.d.compose.deep({}, {});
+            const expectd = {};
+            assert.ok(_.is.Equal(od, expectd));
         });
         it('call - bad argument 1', function() {
-            var od = _.d.smart_extend(1, { "a": "b" });
-            var xd = { "a": "b"};
-            assert.ok(_.is.Equal(od, xd));
+            var od = _.d.compose.deep(1, { "a": "b" });
+            const expectd = { "a": "b"};
+            assert.ok(_.is.Equal(od, expectd));
         });
         it('call - bad argument 2', function() {
-            var od = _.d.smart_extend({ "a": "b" }, 222);
-            var xd = { "a": "b"};
-            assert.ok(_.is.Equal(od, xd));
+            var od = _.d.compose.deep({ "a": "b" }, 222);
+            const expectd = { "a": "b"};
+            assert.ok(_.is.Equal(od, expectd));
         });
         it('call - merge', function() {
-            var srcd = {};
-            var upd = {
+            const startd = {};
+            const updated = {
                 "hi": "there",
             };
-            var xd = {
+            const expectd = {
                 "hi": "there",
             };
-            _.d.smart_extend(srcd, upd);
+            const rd = _.d.compose.deep(startd, updated);
 
-            assert.ok(_.is.Equal(srcd, xd));
+            assert.ok(_.is.Equal(rd, expectd));
         });
         it('call - merge', function() {
-            var srcd = {
+            const startd = {
                 "a": "b",
             };
-            var upd = {
+            const updated = {
                 "hi": "there",
             };
-            var xd = {
+            const expectd = {
                 "a": "b",
                 "hi": "there",
             };
-            _.d.smart_extend(srcd, upd);
+            const rd = _.d.compose.deep(startd, updated);
 
-            assert.ok(_.is.Equal(srcd, xd));
+            assert.ok(_.is.Equal(rd, expectd));
         });
         it('call - merge: dict in src', function() {
-            var srcd = {
+            const startd = {
+                "hi": "there",
+            };
+            const updated = {
                 "a": "b",
                 "hi": {},
             };
-            var upd = {
-                "hi": "there",
-            };
-            var xd = {
+            const expectd = {
                 "a": "b",
                 "hi": "there",
             };
-            _.d.smart_extend(srcd, upd);
+            const rd = _.d.compose.deep(startd, updated);
 
-            assert.ok(_.is.Equal(srcd, xd));
+            assert.ok(_.is.Equal(rd, expectd));
         });
         it('call - merge: dict in update', function() {
-            var srcd = {
+            const startd = {
                 "a": "b",
+                "hi": {},
+            };
+            const updated = {
                 "hi": "there",
             };
-            var upd = {
-                "hi": {},
-            };
-            var xd = {
+            const expectd = {
                 "a": "b",
                 "hi": {},
             };
-            _.d.smart_extend(srcd, upd);
+            const rd = _.d.compose.deep(startd, updated);
 
-            assert.ok(_.is.Equal(srcd, xd));
+            assert.ok(_.is.Equal(rd, expectd));
         });
         it('call - merge subdictionary', function() {
-            var srcd = {
+            const startd = {
                 "a": "b",
                 "sub": {
                     "c": "d",
                     "e": "f",
                 },
             };
-            var upd = {
+            const updated = {
                 "hi": "there",
                 "sub": {
-                    "e": "updated",
+                    "e": "updatedated",
                     "g": "h",
                 },
             };
-            var xd = {
+            const expectd = {
                 "a": "b",
                 "hi": "there",
                 "sub": {
                     "c": "d",
-                    "e": "updated",
+                    "e": "updatedated",
                     "g": "h",
                 },
             };
-            _.d.smart_extend(srcd, upd);
+            const rd = _.d.compose.deep(startd, updated);
 
-            assert.ok(_.is.Equal(srcd, xd));
+            assert.ok(_.is.Equal(rd, expectd));
         });
         describe('arrays', function() {
             it('add array', function() {
-                var srcd = {
+                const startd = {
                     "A": "b",
                 };
-                var upd = {
+                const updated = {
                     "B": [ "a", "c", "c" ],
                 };
-                var xd = {
+                const expectd = {
                     "A": "b",
                     "B": [ "a", "c", "c" ],
                 };
-                _.d.smart_extend(srcd, upd);
+                const rd = _.d.compose.deep(startd, updated);
 
-                assert.ok(_.is.Equal(srcd, xd));
+                assert.ok(_.is.Equal(rd, expectd));
             });
-            it('replace value with array', function() {
-                var srcd = {
+            it('replace array with value (to fail)', function() {
+                const startd = {
                     "A": "b",
+                    "B": [ "a", "c", "c" ],
+                };
+                const updated = {
                     "B": 1,
                 };
-                var upd = {
-                    "B": [ "a", "c", "c" ],
-                };
-                var xd = {
+                const expectd = {
                     "A": "b",
                     "B": [ "a", "c", "c" ],
                 };
-                _.d.smart_extend(srcd, upd);
+                const rd = _.d.compose.deep(startd, updated);
 
-                assert.ok(_.is.Equal(srcd, xd));
+                assert.ok(_.is.Equal(rd, expectd));
             });
-            it('replace array with array', function() {
-                var srcd = {
+            it('replace array with array (to fail)', function() {
+                const startd = {
                     "A": "b",
+                    "B": [ "a", "c", "c" ],
+                };
+                const updated = {
                     "B": [ "1", "2" ],
                 };
-                var upd = {
-                    "B": [ "a", "c", "c" ],
-                };
-                var xd = {
+                const expectd = {
                     "A": "b",
                     "B": [ "a", "c", "c" ],
                 };
-                _.d.smart_extend(srcd, upd);
+                const rd = _.d.compose.deep(startd, updated);
 
-                assert.ok(_.is.Equal(srcd, xd));
+                assert.ok(_.is.Equal(rd, expectd));
             });
         });
     });
     describe('json', function() {
         it('call - empty', function() {
             var od = _.d.json({});
-            var xd = {};
-            assert.ok(_.is.Equal(od, xd));
+            const expectd = {};
+            assert.ok(_.is.Equal(od, expectd));
         });
         it('call - clean', function() {
             var od = _.d.json(d1d);
@@ -412,13 +412,13 @@ describe('test_d:', function() {
             sd["sub"] = ssd;
             var od = _.d.json(sd);
 
-            var xd = _.d.clone.deep(d1d);
-            xd["sub"] = { "good": "times" };
+            const expectd = _.d.clone.deep(d1d);
+            expectd["sub"] = { "good": "times" };
 
             // console.log("OD", od);
-            // console.log("XD", xd);
+            // console.log("XD", expectd);
 
-            assert.ok(_.is.Equal(od, xd));
+            assert.ok(_.is.Equal(od, expectd));
         });
         it('call - dirty array', function() {
             var sd = _.d.clone.deep(d1d);
@@ -430,27 +430,27 @@ describe('test_d:', function() {
             sd["sub"] = [ "hi", ssd, "there" ];
             var od = _.d.json(sd);
 
-            var xd = _.d.clone.deep(d1d);
-            xd["sub"] = [ "hi", { "good": "times" }, "there" ];
+            const expectd = _.d.clone.deep(d1d);
+            expectd["sub"] = [ "hi", { "good": "times" }, "there" ];
 
-            assert.ok(_.is.Equal(od, xd));
+            assert.ok(_.is.Equal(od, expectd));
         });
     });
     describe('transform', function() {
         it('call - empty', function() {
             var od = _.d.transform({});
-            var xd = {};
-            assert.ok(_.is.Equal(od, xd));
+            const expectd = {};
+            assert.ok(_.is.Equal(od, expectd));
         });
         it('call - empty', function() {
             var od = _.d.transform({}, {});
-            var xd = {};
-            assert.ok(_.is.Equal(od, xd));
+            const expectd = {};
+            assert.ok(_.is.Equal(od, expectd));
         });
         it('call - empty transform', function() {
             var od = _.d.transform(d1d, {});
-            var xd = d1d;
-            assert.ok(_.is.Equal(od, xd));
+            const expectd = d1d;
+            assert.ok(_.is.Equal(od, expectd));
         });
         it('call - upper case keys', function() {
             var od = _.d.transform(d1d, {
@@ -458,7 +458,7 @@ describe('test_d:', function() {
                     return value.toUpperCase();
                 },
             });
-            var xd = {
+            const expectd = {
               STRING0: '',
               STRING1: 'hello',
               STRING2: 'world',
@@ -472,7 +472,7 @@ describe('test_d:', function() {
               NUMBER2: -3.14,
               ARRAY0: [ 'a', 'b', 'c' ],
               DICT0: { STRING0: 'the number 99', INTEGER0: 99, NUMBER0: -99.9 } };
-            assert.ok(_.is.Equal(od, xd));
+            assert.ok(_.is.Equal(od, expectd));
         });
         it('call - remove keys', function() {
             var od = _.d.transform(d1d, {
@@ -482,13 +482,13 @@ describe('test_d:', function() {
                     }
                 },
             });
-            var xd = {
+            const expectd = {
                 string0: '',
                 string1: 'hello',
                 string2: 'world',
                 dict0: { string0: 'the number 99' } };
 
-            assert.ok(_.is.Equal(od, xd));
+            assert.ok(_.is.Equal(od, expectd));
         });
         it('call - change value to null', function() {
             var od = _.d.transform(d1d, {
@@ -496,7 +496,7 @@ describe('test_d:', function() {
                     return null;
                 },
             });
-            var xd = {
+            const expectd = {
                 string0: null,
                 string1: null,
                 string2: null,
@@ -512,7 +512,7 @@ describe('test_d:', function() {
                 dict0: { string0: null, integer0: null, number0: null } };
 
 
-            assert.ok(_.is.Equal(od, xd));
+            assert.ok(_.is.Equal(od, expectd));
         });
         it('call - filter', function() {
             var sd = _.d.clone.deep(d1d);
@@ -524,9 +524,9 @@ describe('test_d:', function() {
                     }
                 },
             });
-            var xd = { string0: '', string1: 'hello', string2: 'world', "array0": [ "a", "b", "c", ],}
+            const expectd = { string0: '', string1: 'hello', string2: 'world', "array0": [ "a", "b", "c", ],}
 
-            assert.ok(_.is.Equal(od, xd));
+            assert.ok(_.is.Equal(od, expectd));
         });
         it('call - pre', function() {
             var od = _.d.transform(d1d, {
@@ -537,10 +537,10 @@ describe('test_d:', function() {
                     return value.toUpperCase();
                 },
             });
-            var xd = {
+            const expectd = {
                 "A": "b",
             };
-            assert.ok(_.is.Equal(od, xd));
+            assert.ok(_.is.Equal(od, expectd));
         });
         it('call - post', function() {
             var od = _.d.transform(d1d, {
@@ -551,10 +551,10 @@ describe('test_d:', function() {
                     return value.toUpperCase();
                 },
             });
-            var xd = {
+            const expectd = {
                 "a": "b",
             };
-            assert.ok(_.is.Equal(od, xd));
+            assert.ok(_.is.Equal(od, expectd));
         });
     });
 })

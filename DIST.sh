@@ -6,7 +6,6 @@
 #   2016-06-07
 #
 
-exit 0
 PACKAGE=iotdb-helpers
 DIST_ROOT=/var/tmp/.dist.$$
 
@@ -34,7 +33,7 @@ echo "=================="
         --exclude "node_modules" \
         README.md LICENSE \
         package.json \
-        index.js \
+        helpers.js lib/*.js \
         |
     ( cd "${NPM_DST}" && tar xvf - && npm publish ) || exit 1
     git commit -m "new release" package.json || exit 1
@@ -42,3 +41,4 @@ echo "=================="
 
     echo "end"
 )
+
