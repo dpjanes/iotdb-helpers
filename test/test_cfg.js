@@ -51,10 +51,10 @@ describe('test_cfg', function () {
     describe('cfg.find', function () {
         it('all files in a directory', function () {
             var expects = ['data/cfg1/a.js', 'data/cfg1/a.json', 'data/cfg1/b.js', 'data/cfg1/c.json']
-            assert.deepEqual(expects, _.cfg.find(".", "data/cfg1"))
-            assert.deepEqual(expects, _.cfg.find(".", "data/cfg1:data/cfg3"))
-            assert.deepEqual(expects, _.cfg.find(".", ["data/cfg1"]))
-            assert.deepEqual(expects, _.cfg.find(".", ["data/cfg1", "data/cfg3"]))
+            assert.deepEqual(expects, _.cfg.find("data/cfg1"))
+            assert.deepEqual(expects, _.cfg.find("data/cfg1:data/cfg3"))
+            assert.deepEqual(expects, _.cfg.find(["data/cfg1"]))
+            assert.deepEqual(expects, _.cfg.find(["data/cfg1", "data/cfg3"]))
         })
         it('expansion', function () {
             /*
@@ -64,23 +64,6 @@ describe('test_cfg', function () {
             assert.deepEqual(expects, _.cfg.find(["$TEST_DATA/cfg1"]))
             assert.deepEqual(expects, _.cfg.find(["$TEST_DATA/cfg1", "$TEST_DATA/cfg3"]))
             */
-        })
-        it('.max', function () {
-            var expects = ['data/cfg1/a.js', 'data/cfg1/a.json', ]
-            assert.deepEqual(expects, _.cfg.find("data/cfg1", null, {
-                max: 2
-            }))
-
-            var expects = ['data/cfg1/a.js', 'data/cfg1/a.json', 'data/cfg1/b.js', 'data/cfg1/c.json']
-            assert.deepEqual(expects, _.cfg.find("data/cfg1", null, {
-                max: 4
-            }))
-            assert.deepEqual(expects, _.cfg.find("data/cfg1", null, {
-                max: 10
-            }))
-            assert.deepEqual(expects, _.cfg.find("data/cfg1", null, {
-                max: 0
-            }))
         })
         it('.dotfiles', function () {
             var expects = ['data/cfg1/a.js', 'data/cfg1/a.json', 'data/cfg1/b.js', 'data/cfg1/c.json']
@@ -111,12 +94,6 @@ describe('test_cfg', function () {
             assert.deepEqual(expects, _.cfg.find("data/cfg1", /[.]js$/, {
                 dotfiles: true
             }))
-
-            var expects = ['data/cfg1/.d.js']
-            assert.deepEqual(expects, _.cfg.find("data/cfg1", /[.]js$/, {
-                dotfiles: true,
-                max: 1
-            }))
         })
         it('all up - multiple directories', function () {
             /*
@@ -128,18 +105,8 @@ describe('test_cfg', function () {
             var gots = _.cfg.find("$TEST_DATA/cfg1:$TEST_DATA/cfg2", "b.js")
             assert.deepEqual(expects, gots)
 
-            var expects = ['data/cfg1/b.js']
-            var gots = _.cfg.find("$TEST_DATA/cfg1:$TEST_DATA/cfg2", "b.js", {
-                max: 1
-            })
             assert.deepEqual(expects, gots)
 
-            var expects = ['data/cfg1/.d.js']
-            var gots = _.cfg.find("$TEST_DATA/cfg1:$TEST_DATA/cfg2", /[.]js$/, {
-                max: 1,
-                dotfiles: true
-            })
-            assert.deepEqual(expects, gots)
             */
         })
         it('search subdirectories', function () {
@@ -150,7 +117,7 @@ describe('test_cfg', function () {
     })
     describe('cfg.load.json', function () {
         it('with missing file', function (done) {
-            var filenames = _.cfg.find({}, "data/cfg1", /[.]json$/)
+            var filenames = _.cfg.find("data/cfg1", /[.]json$/)
             filenames.push("does.not.exist")
             _.cfg.load.json(filenames, function (paramd) {
                 if (paramd.doc) {
@@ -179,7 +146,7 @@ describe('test_cfg', function () {
     })
     describe('cfg.load.file', function () {
         it('with missing file and dot files', function (done) {
-            var filenames = _.cfg.find({}, "data/cfg1", /[.]json$/)
+            var filenames = _.cfg.find("data/cfg1", /[.]json$/)
             filenames.push("does.not.exist")
             filenames.push(".");
             filenames.push("..");
@@ -199,7 +166,7 @@ describe('test_cfg', function () {
     });
     describe('cfg.load.js', function () {
         it('with missing file', function (done) {
-            var filenames = _.cfg.find({}, "data/cfg1", /[.]js$/)
+            var filenames = _.cfg.find("data/cfg1", /[.]js$/)
             filenames.push("does.not.exist")
             _.cfg.load.js(filenames, function (paramd) {
                 if (paramd.error) {
