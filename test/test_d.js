@@ -50,7 +50,7 @@ describe('test_d:', function() {
                 var expect = d1d[key];
                 var got = _.d.get(d1d, key, null);
 
-                assert.ok(_.is.Equal(expect, got));
+                assert.deepEqual(expect, got);
             });
         });
         it('simple - slash', function() {
@@ -59,7 +59,7 @@ describe('test_d:', function() {
                 var expect = d1d[key];
                 var got = _.d.get(d1d, "/" + key, null);
 
-                assert.ok(_.is.Equal(expect, got));
+                assert.deepEqual(expect, got);
             });
         });
         it('path - no leading /', function() {
@@ -67,13 +67,13 @@ describe('test_d:', function() {
                 var expect = d1d["dict0"]["string0"];
                 var got = _.d.get(d1d, "/dict0/string0", null);
 
-                assert.ok(_.is.Equal(expect, got));
+                assert.deepEqual(expect, got);
             }
             {
                 var expect = d1d["dict0"]["number0"];
                 var got = _.d.get(d1d, "/dict0/number0", null);
 
-                assert.ok(_.is.Equal(expect, got));
+                assert.deepEqual(expect, got);
             }
         });
         it('path - leading /', function() {
@@ -81,13 +81,13 @@ describe('test_d:', function() {
                 var expect = d1d["dict0"]["string0"];
                 var got = _.d.get(d1d, "/dict0/string0", null);
 
-                assert.ok(_.is.Equal(expect, got));
+                assert.deepEqual(expect, got);
             }
             {
                 var expect = d1d["dict0"]["number0"];
                 var got = _.d.get(d1d, "/dict0/number0", null);
 
-                assert.ok(_.is.Equal(expect, got));
+                assert.deepEqual(expect, got);
             }
         });
         it('path - undefined head', function() {
@@ -95,7 +95,7 @@ describe('test_d:', function() {
                 var expect = "ABC";
                 var got = _.d.get(d1d, "/undefined/undefined", expect);
 
-                assert.ok(_.is.Equal(expect, got));
+                assert.deepEqual(expect, got);
             }
         });
         it('path - undefined tail', function() {
@@ -103,7 +103,7 @@ describe('test_d:', function() {
                 var expect = "ABC";
                 var got = _.d.get(d1d, "/dict0/undefined", expect);
 
-                assert.ok(_.is.Equal(expect, got));
+                assert.deepEqual(expect, got);
             }
         });
         it('path - not object', function() {
@@ -111,7 +111,7 @@ describe('test_d:', function() {
                 var expect = "ABC";
                 var got = _.d.get(d1d, "/string0/undefined", expect);
 
-                assert.ok(_.is.Equal(expect, got));
+                assert.deepEqual(expect, got);
             }
         });
     });
@@ -127,10 +127,10 @@ describe('test_d:', function() {
             };
 
             _.d.set(d, "hi", "there");
-            assert.ok(_.is.Equal(d, x1d));
+            assert.deepEqual(d, x1d);
             
             _.d.set(d, "yellow", 10);
-            assert.ok(_.is.Equal(d, x2d));
+            assert.deepEqual(d, x2d);
             
         });
         it('set - slash, blank', function() {
@@ -142,7 +142,7 @@ describe('test_d:', function() {
             };
 
             _.d.set(d, "/hi/hello", "there");
-            assert.ok(_.is.Equal(d, x1d));
+            assert.deepEqual(d, x1d);
         });
         it('set - slash, existing', function() {
             var d = {
@@ -158,7 +158,7 @@ describe('test_d:', function() {
             };
 
             _.d.set(d, "/hi/hello", "there");
-            assert.ok(_.is.Equal(d, x1d));
+            assert.deepEqual(d, x1d);
         });
         it('set - slash, existing overwrite', function() {
             var d = {
@@ -171,7 +171,7 @@ describe('test_d:', function() {
             };
 
             _.d.set(d, "/hi/hello", "there");
-            assert.ok(_.is.Equal(d, x1d));
+            assert.deepEqual(d, x1d);
         });
     });
     describe('d_contains_d', function() {
@@ -230,22 +230,22 @@ describe('test_d:', function() {
         it('call - empty', function() {
             var od = _.d.compose.deep({});
             const expectd = {};
-            assert.ok(_.is.Equal(od, expectd));
+            assert.deepEqual(od, expectd);
         });
         it('call - empty', function() {
             var od = _.d.compose.deep({}, {});
             const expectd = {};
-            assert.ok(_.is.Equal(od, expectd));
+            assert.deepEqual(od, expectd);
         });
         it('call - bad argument 1', function() {
             var od = _.d.compose.deep(1, { "a": "b" });
             const expectd = { "a": "b"};
-            assert.ok(_.is.Equal(od, expectd));
+            assert.deepEqual(od, expectd);
         });
         it('call - bad argument 2', function() {
             var od = _.d.compose.deep({ "a": "b" }, 222);
             const expectd = { "a": "b"};
-            assert.ok(_.is.Equal(od, expectd));
+            assert.deepEqual(od, expectd);
         });
         it('call - merge', function() {
             const startd = {};
@@ -257,7 +257,7 @@ describe('test_d:', function() {
             };
             const rd = _.d.compose.deep(startd, updated);
 
-            assert.ok(_.is.Equal(rd, expectd));
+            assert.deepEqual(rd, expectd);
         });
         it('call - merge', function() {
             const startd = {
@@ -272,7 +272,7 @@ describe('test_d:', function() {
             };
             const rd = _.d.compose.deep(startd, updated);
 
-            assert.ok(_.is.Equal(rd, expectd));
+            assert.deepEqual(rd, expectd);
         });
         it('call - merge: dict in src', function() {
             const startd = {
@@ -288,7 +288,7 @@ describe('test_d:', function() {
             };
             const rd = _.d.compose.deep(startd, updated);
 
-            assert.ok(_.is.Equal(rd, expectd));
+            assert.deepEqual(rd, expectd);
         });
         it('call - merge: dict in update', function() {
             const startd = {
@@ -304,7 +304,7 @@ describe('test_d:', function() {
             };
             const rd = _.d.compose.deep(startd, updated);
 
-            assert.ok(_.is.Equal(rd, expectd));
+            assert.deepEqual(rd, expectd);
         });
         it('call - merge subdictionary', function() {
             const startd = {
@@ -332,7 +332,7 @@ describe('test_d:', function() {
             };
             const rd = _.d.compose.deep(startd, updated);
 
-            assert.ok(_.is.Equal(rd, expectd));
+            assert.deepEqual(rd, expectd);
         });
         describe('arrays', function() {
             it('add array', function() {
@@ -348,7 +348,7 @@ describe('test_d:', function() {
                 };
                 const rd = _.d.compose.deep(startd, updated);
 
-                assert.ok(_.is.Equal(rd, expectd));
+                assert.deepEqual(rd, expectd);
             });
             it('replace array with value (to fail)', function() {
                 const startd = {
@@ -364,7 +364,7 @@ describe('test_d:', function() {
                 };
                 const rd = _.d.compose.deep(startd, updated);
 
-                assert.ok(_.is.Equal(rd, expectd));
+                assert.deepEqual(rd, expectd);
             });
             it('replace array with array (to fail)', function() {
                 const startd = {
@@ -380,7 +380,7 @@ describe('test_d:', function() {
                 };
                 const rd = _.d.compose.deep(startd, updated);
 
-                assert.ok(_.is.Equal(rd, expectd));
+                assert.deepEqual(rd, expectd);
             });
         });
     });
@@ -388,11 +388,11 @@ describe('test_d:', function() {
         it('call - empty', function() {
             var od = _.d.json({});
             const expectd = {};
-            assert.ok(_.is.Equal(od, expectd));
+            assert.deepEqual(od, expectd);
         });
         it('call - clean', function() {
             var od = _.d.json(d1d);
-            assert.ok(_.is.Equal(od, d1d));
+            assert.deepEqual(od, d1d);
         });
         it('call - dirty', function() {
             var sd = _.d.clone.deep(d1d);
@@ -400,7 +400,7 @@ describe('test_d:', function() {
             sd["nan"] = NaN;
             sd["undefined"] = undefined;
             var od = _.d.json(sd);
-            assert.ok(_.is.Equal(od, d1d));
+            assert.deepEqual(od, d1d);
         });
         it('call - dirty subdictionary', function() {
             var sd = _.d.clone.deep(d1d);
@@ -418,7 +418,7 @@ describe('test_d:', function() {
             // console.log("OD", od);
             // console.log("XD", expectd);
 
-            assert.ok(_.is.Equal(od, expectd));
+            assert.deepEqual(od, expectd);
         });
         it('call - dirty array', function() {
             var sd = _.d.clone.deep(d1d);
@@ -433,24 +433,24 @@ describe('test_d:', function() {
             const expectd = _.d.clone.deep(d1d);
             expectd["sub"] = [ "hi", { "good": "times" }, "there" ];
 
-            assert.ok(_.is.Equal(od, expectd));
+            assert.deepEqual(od, expectd);
         });
     });
     describe('transform', function() {
         it('call - empty', function() {
             var od = _.d.transform({});
             const expectd = {};
-            assert.ok(_.is.Equal(od, expectd));
+            assert.deepEqual(od, expectd);
         });
         it('call - empty', function() {
             var od = _.d.transform({}, {});
             const expectd = {};
-            assert.ok(_.is.Equal(od, expectd));
+            assert.deepEqual(od, expectd);
         });
         it('call - empty transform', function() {
             var od = _.d.transform(d1d, {});
             const expectd = d1d;
-            assert.ok(_.is.Equal(od, expectd));
+            assert.deepEqual(od, expectd);
         });
         it('call - upper case keys', function() {
             var od = _.d.transform(d1d, {
@@ -472,7 +472,7 @@ describe('test_d:', function() {
               NUMBER2: -3.14,
               ARRAY0: [ 'a', 'b', 'c' ],
               DICT0: { STRING0: 'the number 99', INTEGER0: 99, NUMBER0: -99.9 } };
-            assert.ok(_.is.Equal(od, expectd));
+            assert.deepEqual(od, expectd);
         });
         it('call - remove keys', function() {
             var od = _.d.transform(d1d, {
@@ -488,7 +488,7 @@ describe('test_d:', function() {
                 string2: 'world',
                 dict0: { string0: 'the number 99' } };
 
-            assert.ok(_.is.Equal(od, expectd));
+            assert.deepEqual(od, expectd);
         });
         it('call - change value to null', function() {
             var od = _.d.transform(d1d, {
@@ -512,7 +512,7 @@ describe('test_d:', function() {
                 dict0: { string0: null, integer0: null, number0: null } };
 
 
-            assert.ok(_.is.Equal(od, expectd));
+            assert.deepEqual(od, expectd);
         });
         it('call - filter', function() {
             var sd = _.d.clone.deep(d1d);
@@ -526,7 +526,7 @@ describe('test_d:', function() {
             });
             const expectd = { string0: '', string1: 'hello', string2: 'world', "array0": [ "a", "b", "c", ],}
 
-            assert.ok(_.is.Equal(od, expectd));
+            assert.deepEqual(od, expectd);
         });
         it('call - pre', function() {
             var od = _.d.transform(d1d, {
@@ -540,7 +540,7 @@ describe('test_d:', function() {
             const expectd = {
                 "A": "b",
             };
-            assert.ok(_.is.Equal(od, expectd));
+            assert.deepEqual(od, expectd);
         });
         it('call - post', function() {
             var od = _.d.transform(d1d, {
@@ -554,7 +554,7 @@ describe('test_d:', function() {
             const expectd = {
                 "a": "b",
             };
-            assert.ok(_.is.Equal(od, expectd));
+            assert.deepEqual(od, expectd);
         });
     });
 })
