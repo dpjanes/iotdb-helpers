@@ -55,9 +55,13 @@ for (var mi in modules) {
     }
 }
 
+exports.noop = function () {};
+
+// these are aliases
 exports.queue = require('./lib/q').q.queue;
 exports.defaults = require('./lib/d').d.compose.shallow;
-exports.noop = function () {};
+
+// these are likely to be deleted
 exports.make_done = function (done) {
     return function(value) {
         done(null, value);
@@ -68,11 +72,3 @@ exports.make_error = function (done) {
         done(error);
     };
 };
-
-
-/*
-_.noop = () => {};
-_.make_done = (done) => (value) => done(null, value);
-_.make_error = (done) => (error) => done(error);
-
-*/
