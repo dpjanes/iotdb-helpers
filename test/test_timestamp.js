@@ -16,6 +16,7 @@ var TS_OLD = '2010-03-25T21:28:43.613Z';
 var TS_NEW = '2012-03-25T21:28:43.613Z';
 var TS_FUTURE = '2299-03-25T21:28:43.613Z';
 var TS_NOW = (new Date()).toISOString();
+var TS_EPOCH = "1970-01-01T00:00:00.000Z";
 
 var as_now = function(callback) {
     var _old = _.timestamp.make;
@@ -68,6 +69,30 @@ describe('test_d_timestamp', function(){
             };
             var nd = {
                 '@timestamp': TS_NEW,
+                key: 'newd',
+            };
+
+            assert.strictEqual(_.timestamp.check.dictionary(od, nd), true);
+        });
+        it('old:TS_NEW, new:TS_NEW -> false', function() {
+            var od = {
+                '@timestamp': TS_NEW,
+                key: 'old',
+            };
+            var nd = {
+                '@timestamp': TS_NEW,
+                key: 'newd',
+            };
+
+            assert.strictEqual(_.timestamp.check.dictionary(od, nd), false);
+        });
+        it('old:TS_EPOCH, new:TS_EPOCH -> false', function() {
+            var od = {
+                '@timestamp': TS_EPOCH,
+                key: 'old',
+            };
+            var nd = {
+                '@timestamp': TS_EPOCH,
                 key: 'newd',
             };
 
