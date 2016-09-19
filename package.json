@@ -7,7 +7,7 @@
         "assert": "~1.4.1", 
         "bunyan": "~1.8.1", 
         "crypto": "~0.0.3", 
-        "iotdb-helpers": "~3.0.9", 
+        "iotdb-helpers": "~3.0.10", 
         "node-uuid": "~1.4.7", 
         "underscore": "~1.8.3", 
         "unirest": "~0.5.1", 
@@ -23,7 +23,7 @@
         "grunt-jsbeautifier": "~0.2.13", 
         "jshint-stylish": "~2.2.1", 
         "load-grunt-tasks": "~3.5.2", 
-        "request": "~2.74.0"
+        "request": "~2.75.0"
     }, 
     "homepage": "https://iotdb.io", 
     "iotdb": {}, 
@@ -39,5 +39,5 @@
         "cover": "istanbul cover _mocha test", 
         "test": "grunt"
     }, 
-    "version": "3.0.10"
+    "version": "3.0.11"
 }
