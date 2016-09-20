@@ -72,3 +72,5 @@ exports.make_error = function (done) {
         done(error);
     };
 };
+
+exports.counter = require("./counter").counter;
