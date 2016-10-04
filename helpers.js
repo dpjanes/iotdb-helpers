@@ -56,6 +56,7 @@ for (var mi in modules) {
 }
 
 exports.noop = function () {};
+exports.spy = name => value => { console.log(name, value); return value }
 
 // these are aliases
 exports.queue = require('./lib/q').q.queue;
