@@ -35,6 +35,7 @@ var modules = [
     require('./lib/ld'),
     require('./lib/id'),
     require('./lib/d'),
+    require('./lib/fs'),
     require('./lib/hash'),
     require('./lib/is'),
     require('./lib/net'),
