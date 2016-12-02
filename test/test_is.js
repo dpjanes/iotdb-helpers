@@ -75,6 +75,7 @@ describe('test_is', function() {
     });
     it('is.Number', function() {
 
+        assert.ok(!_.is.Number(NaN));
         assert.ok(!_.is.Number(null));
         assert.ok(!_.is.Number(undefined));
         assert.ok(_.is.Number(0));
@@ -193,4 +194,175 @@ describe('test_is', function() {
         assert.ok(!_.is.AbsoluteURL("example.com/hi"));
         assert.ok(_.is.AbsoluteURL("iot:xxx")); // don't love it
     });
+    it('is.Array.of.String', function() {
+        // guarantee fails
+        assert.ok(!_.is.Array.of.String(NaN));
+        assert.ok(!_.is.Array.of.String(new Date()));
+        assert.ok(!_.is.Array.of.String(/^hello world$/));
+        assert.ok(!_.is.Array.of.String(null));
+        assert.ok(!_.is.Array.of.String(undefined));
+        assert.ok(!_.is.Array.of.String(0));
+        assert.ok(!_.is.Array.of.String(1));
+        assert.ok(!_.is.Array.of.String(0.1));
+        assert.ok(!_.is.Array.of.String(1.2));
+        assert.ok(!_.is.Array.of.String(false));
+        assert.ok(!_.is.Array.of.String(true));
+        assert.ok(!_.is.Array.of.String(""));
+        assert.ok(!_.is.Array.of.String("string"));
+        // assert.ok(!_.is.Array.of.String([ "a", ]));
+        assert.ok(!_.is.Array.of.String({ "a": "n" }));
+        assert.ok(!_.is.Array.of.String(function() {}));
+    })
+    it('is.Array.of.Object', function() {
+        // guarantee fails
+        assert.ok(!_.is.Array.of.Object(NaN));
+        assert.ok(!_.is.Array.of.Object(new Date()));
+        assert.ok(!_.is.Array.of.Object(/^hello world$/));
+        assert.ok(!_.is.Array.of.Object(null));
+        assert.ok(!_.is.Array.of.Object(undefined));
+        assert.ok(!_.is.Array.of.Object(0));
+        assert.ok(!_.is.Array.of.Object(1));
+        assert.ok(!_.is.Array.of.Object(0.1));
+        assert.ok(!_.is.Array.of.Object(1.2));
+        assert.ok(!_.is.Array.of.Object(false));
+        assert.ok(!_.is.Array.of.Object(true));
+        assert.ok(!_.is.Array.of.Object(""));
+        assert.ok(!_.is.Array.of.Object("string"));
+        assert.ok(!_.is.Array.of.Object([ "a", ]));
+        assert.ok(!_.is.Array.of.Object({ "a": "n" }));
+        assert.ok(!_.is.Array.of.Object(function() {}));
+    })
+    it('is.Array.of.Dictionary', function() {
+        // guarantee fails
+        assert.ok(!_.is.Array.of.Dictionary(NaN));
+        assert.ok(!_.is.Array.of.Dictionary(new Date()));
+        assert.ok(!_.is.Array.of.Dictionary(/^hello world$/));
+        assert.ok(!_.is.Array.of.Dictionary(null));
+        assert.ok(!_.is.Array.of.Dictionary(undefined));
+        assert.ok(!_.is.Array.of.Dictionary(0));
+        assert.ok(!_.is.Array.of.Dictionary(1));
+        assert.ok(!_.is.Array.of.Dictionary(0.1));
+        assert.ok(!_.is.Array.of.Dictionary(1.2));
+        assert.ok(!_.is.Array.of.Dictionary(false));
+        assert.ok(!_.is.Array.of.Dictionary(true));
+        assert.ok(!_.is.Array.of.Dictionary(""));
+        assert.ok(!_.is.Array.of.Dictionary("string"));
+        assert.ok(!_.is.Array.of.Dictionary([ "a", ]));
+        assert.ok(!_.is.Array.of.Dictionary({ "a": "n" }));
+        assert.ok(!_.is.Array.of.Dictionary(function() {}));
+    })
+    it('is.Timestamp', function() {
+        // guarantee fails
+        assert.ok(!_.is.Timestamp(NaN));
+        assert.ok(!_.is.Timestamp(new Date()));
+        assert.ok(!_.is.Timestamp(/^hello world$/));
+        assert.ok(!_.is.Timestamp(null));
+        assert.ok(!_.is.Timestamp(undefined));
+        assert.ok(!_.is.Timestamp(0));
+        assert.ok(!_.is.Timestamp(1));
+        assert.ok(!_.is.Timestamp(0.1));
+        assert.ok(!_.is.Timestamp(1.2));
+        assert.ok(!_.is.Timestamp(false));
+        assert.ok(!_.is.Timestamp(true));
+        assert.ok(!_.is.Timestamp(""));
+        assert.ok(!_.is.Timestamp("string"));
+        assert.ok(!_.is.Timestamp([ "a", ]));
+        assert.ok(!_.is.Timestamp({ "a": "n" }));
+        assert.ok(!_.is.Timestamp(function() {}));
+
+        assert.ok(_.is.Timestamp(_.timestamp.make()))
+        assert.ok(_.is.Timestamp('2016-12-02T15:49:56.526Z'))
+    })
+    it('is.Dictionary', function() {
+        assert.ok(!_.is.Dictionary(NaN));
+        assert.ok(!_.is.Dictionary(new Date()));
+        assert.ok(!_.is.Dictionary(/^hello world$/));
+        assert.ok(!_.is.Dictionary(null));
+        assert.ok(!_.is.Dictionary(undefined));
+        assert.ok(!_.is.Dictionary(0));
+        assert.ok(!_.is.Dictionary(1));
+        assert.ok(!_.is.Dictionary(0.1));
+        assert.ok(!_.is.Dictionary(1.2));
+        assert.ok(!_.is.Dictionary(false));
+        assert.ok(!_.is.Dictionary(true));
+        assert.ok(!_.is.Dictionary(""));
+        assert.ok(!_.is.Dictionary("string"));
+        assert.ok(!_.is.Dictionary([ "a", ]));
+        assert.ok(!_.is.Dictionary(function() {}));
+
+        assert.ok(!_.is.JSON({ something: NaN }));
+        assert.ok(!_.is.JSON({ something: new Date() }));
+        assert.ok(!_.is.JSON({ something: /^hello world$/ }));
+        assert.ok(!_.is.JSON({ something: undefined }));
+        assert.ok(!_.is.JSON({ something: function() {} }));
+
+        assert.ok(_.is.Dictionary({ "a": "n" }));
+        assert.ok(_.is.Dictionary({ "a": [ "b", "c", "d", { "e": "f", "g": [ "hi", "hi", 1, null, true ]}]} ));
+    })
+    it('is.JSON', function() {
+        assert.ok(!_.is.JSON(NaN));
+        assert.ok(!_.is.JSON(new Date()));
+        assert.ok(!_.is.JSON(/^hello world$/));
+        assert.ok(!_.is.JSON(undefined));
+        assert.ok(!_.is.JSON(function() {}));
+
+        assert.ok(!_.is.JSON([ NaN ]));
+        assert.ok(!_.is.JSON([ new Date() ]));
+        assert.ok(!_.is.JSON([ /^hello world$/ ]));
+        assert.ok(!_.is.JSON([ undefined ]));
+        assert.ok(!_.is.JSON([ function() {} ]));
+
+        assert.ok(!_.is.JSON({ something: NaN }));
+        assert.ok(!_.is.JSON({ something: new Date() }));
+        assert.ok(!_.is.JSON({ something: /^hello world$/ }));
+        assert.ok(!_.is.JSON({ something: undefined }));
+        assert.ok(!_.is.JSON({ something: function() {} }));
+
+        assert.ok(_.is.JSON(null));
+        assert.ok(_.is.JSON(0));
+        assert.ok(_.is.JSON(1));
+        assert.ok(_.is.JSON(0.1));
+        assert.ok(_.is.JSON(1.2));
+        assert.ok(_.is.JSON(false));
+        assert.ok(_.is.JSON(true));
+        assert.ok(_.is.JSON(""));
+        assert.ok(_.is.JSON("string"));
+        assert.ok(_.is.JSON([ "a", ]));
+        assert.ok(_.is.JSON({ "a": "n" }));
+
+        assert.ok(_.is.JSON({ "a": [ "b", "c", "d", { "e": "f", "g": [ "hi", "hi", 1, null, true ]}]} ));
+    })
+    it('is.Atomic', function() {
+        assert.ok(!_.is.Atomic(NaN));
+        assert.ok(!_.is.Atomic(new Date()));
+        assert.ok(!_.is.Atomic(/^hello world$/));
+        assert.ok(!_.is.Atomic(undefined));
+        assert.ok(!_.is.Atomic([ "a", ]));
+        assert.ok(!_.is.Atomic({ "a": "n" }));
+        assert.ok(!_.is.Atomic(function() {}));
+
+        assert.ok(_.is.Atomic(null));
+        assert.ok(_.is.Atomic(0));
+        assert.ok(_.is.Atomic(1));
+        assert.ok(_.is.Atomic(0.1));
+        assert.ok(_.is.Atomic(1.2));
+        assert.ok(_.is.Atomic(false));
+        assert.ok(_.is.Atomic(true));
+        assert.ok(_.is.Atomic(""));
+        assert.ok(_.is.Atomic("string"));
+    })
+    it('is.unsorted', function() {
+        assert.strictEqual(_.is.unsorted("a", "b"), -1)
+        assert.strictEqual(_.is.unsorted("b", "a"), 1)
+        assert.strictEqual(_.is.unsorted("b", "b"), 0)
+
+        assert.strictEqual(_.is.unsorted(1, 2), -1)
+        assert.strictEqual(_.is.unsorted(2, 1), 1)
+        assert.strictEqual(_.is.unsorted(2, 2), 0)
+
+        assert.strictEqual(_.is.unsorted(false, true), -1)
+        assert.strictEqual(_.is.unsorted(true, false), 1)
+        assert.strictEqual(_.is.unsorted(true, true), 0)
+        assert.strictEqual(_.is.unsorted(false, false), 0)
+    })
 })
