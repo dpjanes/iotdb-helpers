@@ -11,7 +11,7 @@
         "underscore": "~1.8.3", 
         "unirest": "~0.5.1", 
         "url-join": "~1.1.0", 
-        "uuid": "~3.0.0"
+        "uuid": "~3.0.1"
     }, 
     "description": "IOTDB Module", 
     "devDependencies": {
@@ -39,5 +39,5 @@
         "cover": "istanbul cover _mocha test", 
         "test": "grunt"
     }, 
-    "version": "3.0.16"
+    "version": "3.0.17"
 }
