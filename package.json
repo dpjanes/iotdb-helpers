@@ -7,7 +7,7 @@
         "assert": "~1.4.1", 
         "bunyan": "~1.8.5", 
         "crypto": "~0.0.3", 
-        "iotdb-helpers": "~3.0.17", 
+        "iotdb-helpers": "~3.0.18", 
         "underscore": "~1.8.3", 
         "unirest": "~0.5.1", 
         "url-join": "~1.1.0", 
@@ -39,5 +39,5 @@
         "cover": "istanbul cover _mocha test", 
         "test": "grunt"
     }, 
-    "version": "3.0.18"
+    "version": "3.0.19"
 }
