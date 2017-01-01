@@ -192,6 +192,24 @@ describe('test_d:', function() {
                 assert.deepEqual(expect, got);
             }
         });
+        it('nested inside array', function() {
+            const d = {
+                coord: { lon: -116.55, lat: 33.83 },
+                weather: [
+                    {
+                        id: 804,
+                        main: 'Clouds',
+                        description: 'overcast clouds',
+                        icon: '04n'
+                    }
+                ],
+                base: 'stations',
+            };
+            const expect = "overcast clouds";
+            const got = _.d.first(d, "/weather/description");
+
+            assert.deepEqual(expect, got);
+        })
     });
     describe('set', function() {
         it('set - simple, blank', function() {
