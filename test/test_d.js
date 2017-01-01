@@ -115,7 +115,85 @@ describe('test_d:', function() {
             }
         });
     });
-    describe('get', function() {
+    describe('first', function() {
+        it('simple - no slash', function() {
+            var keys = _.keys(d1d);
+            keys.map(function(key) {
+                var expect = d1d[key];
+                if (_.is.Array(expect) && expect.length) {
+                    expect = expect[0];
+                }
+                var got = _.d.first(d1d, key, null);
+
+                assert.deepEqual(expect, got);
+            });
+        });
+        it('simple - slash', function() {
+            var keys = _.keys(d1d);
+            keys.map(function(key) {
+                var expect = d1d[key];
+                if (_.is.Array(expect) && expect.length) {
+                    expect = expect[0];
+                }
+                var got = _.d.first(d1d, "/" + key, null);
+
+                assert.deepEqual(expect, got);
+            });
+        });
+        it('path - no leading /', function() {
+            {
+                var expect = d1d["dict0"]["string0"];
+                var got = _.d.first(d1d, "/dict0/string0", null);
+
+                assert.deepEqual(expect, got);
+            }
+            {
+                var expect = d1d["dict0"]["number0"];
+                var got = _.d.first(d1d, "/dict0/number0", null);
+
+                assert.deepEqual(expect, got);
+            }
+        });
+        it('path - leading /', function() {
+            {
+                var expect = d1d["dict0"]["string0"];
+                var got = _.d.first(d1d, "/dict0/string0", null);
+
+                assert.deepEqual(expect, got);
+            }
+            {
+                var expect = d1d["dict0"]["number0"];
+                var got = _.d.first(d1d, "/dict0/number0", null);
+
+                assert.deepEqual(expect, got);
+            }
+        });
+        it('path - undefined head', function() {
+            {
+                var expect = "ABC";
+                var got = _.d.first(d1d, "/undefined/undefined", expect);
+
+                assert.deepEqual(expect, got);
+            }
+        });
+        it('path - undefined tail', function() {
+            {
+                var expect = "ABC";
+                var got = _.d.first(d1d, "/dict0/undefined", expect);
+
+                assert.deepEqual(expect, got);
+            }
+        });
+        it('path - not object', function() {
+            {
+                var expect = "ABC";
+                var got = _.d.first(d1d, "/string0/undefined", expect);
+
+                assert.deepEqual(expect, got);
+            }
+        });
+    });
+    describe('set', function() {
         it('set - simple, blank', function() {
             var d = {};
             var x1d = {
