@@ -422,7 +422,7 @@ describe('test_d:', function() {
                 "hi": "there",
                 "sub": {
                     "c": "d",
-                    "e": "updatedated",
+                    "e": "f",
                     "g": "h",
                 },
             };
