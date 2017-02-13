@@ -75,7 +75,7 @@ describe('test_error', function() {
         });
         it('error - with code', function() {
             var value = new Error("an error");
-            value.code = 403;
+            value.statusCode = 403;
             var result = _.error.code(value);
             var expect = 403;
 
@@ -83,7 +83,7 @@ describe('test_error', function() {
         });
         it('error - with code and otherwise', function() {
             var value = new Error("an error");
-            value.code = 403;
+            value.statusCode = 403;
             var result = _.error.code(value, 409);
             var expect = 403;
 
