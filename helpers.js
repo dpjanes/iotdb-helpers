@@ -24,13 +24,13 @@
 
 "use strict";
 
-var crypto = require('crypto');
-var node_url = require('url');
-var path = require('path');
+const crypto = require('crypto');
+const node_url = require('url');
+const path = require('path');
 
 exports.underscore = require('underscore')
 
-var modules = [
+const modules = [
     exports.underscore,
     require('./lib/ld'),
     require('./lib/id'),
@@ -48,6 +48,7 @@ var modules = [
     require('./lib/logger'),
     require('./lib/coerce'),
     require('./lib/cfg'),
+    require('./lib/promise'),
 ];
 for (var mi in modules) {
     var module = modules[mi];
