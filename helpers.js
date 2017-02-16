@@ -77,4 +77,3 @@ exports.make_error = function (done) {
 };
 
 exports.counter = require("./counter").counter;
-exports.conditional = require("./conditional").conditional;
