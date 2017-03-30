@@ -5,9 +5,9 @@
     }, 
     "dependencies": {
         "assert": "~1.4.1", 
-        "bunyan": "~1.8.8", 
+        "bunyan": "~1.8.9", 
         "crypto": "~0.0.3", 
-        "iotdb-helpers": "~3.0.27", 
+        "iotdb-helpers": "~3.0.28", 
         "underscore": "~1.8.3", 
         "unirest": "~0.5.1", 
         "url-join": "~1.1.0", 
@@ -39,5 +39,5 @@
         "cover": "istanbul cover _mocha test", 
         "test": "grunt"
     }, 
-    "version": "3.0.28"
+    "version": "3.0.29"
 }
