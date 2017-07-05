@@ -7,11 +7,11 @@
         "assert": "~1.4.1", 
         "bunyan": "~1.8.10", 
         "crypto": "~0.0.3", 
-        "iotdb-helpers": "~3.0.31", 
+        "iotdb-helpers": "~3.0.32", 
         "underscore": "~1.8.3", 
         "unirest": "~0.5.1", 
         "url-join": "~2.0.2", 
-        "uuid": "~3.0.1"
+        "uuid": "~3.1.0"
     }, 
     "description": "IOTDB Module", 
     "devDependencies": {
@@ -39,5 +39,5 @@
         "cover": "istanbul cover _mocha test", 
         "test": "grunt"
     }, 
-    "version": "3.0.32"
+    "version": "3.0.33"
 }
