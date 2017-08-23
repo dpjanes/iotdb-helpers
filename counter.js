@@ -44,7 +44,7 @@ const counter = done => {
                 _done(null);
             }
         },
-    }
+    };
 };
 
 /**

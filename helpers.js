@@ -28,7 +28,7 @@ const crypto = require('crypto');
 const node_url = require('url');
 const path = require('path');
 
-exports.underscore = require('underscore')
+exports.underscore = require('underscore');
 
 const modules = [
     exports.underscore,
@@ -60,8 +60,8 @@ for (var mi in modules) {
 exports.noop = function () {};
 exports.spy = name => value => {
     console.log(name, value);
-    return value
-}
+    return value;
+};
 
 // these are aliases
 exports.queue = require('./lib/q').q.queue;
