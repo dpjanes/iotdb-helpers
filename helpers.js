@@ -58,7 +58,10 @@ for (var mi in modules) {
 }
 
 exports.noop = function () {};
-exports.spy = name => value => { console.log(name, value); return value }
+exports.spy = name => value => {
+    console.log(name, value);
+    return value
+}
 
 // these are aliases
 exports.queue = require('./lib/q').q.queue;
@@ -66,12 +69,12 @@ exports.defaults = require('./lib/d').d.compose.shallow;
 
 // these are likely to be deleted
 exports.make_done = function (done) {
-    return function(value) {
+    return function (value) {
         done(null, value);
     };
 };
 exports.make_error = function (done) {
-    return function(error) {
+    return function (error) {
         done(error);
     };
 };
