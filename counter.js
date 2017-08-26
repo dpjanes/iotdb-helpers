@@ -29,11 +29,11 @@ const counter = done => {
     let count = 0;
 
     return {
-        increment: function() {
+        increment: function () {
             count++;
         },
 
-        decrement: function(error) {
+        decrement: function (error) {
             if (error) {
                 let _done = done;
                 done = () => {};
@@ -44,7 +44,7 @@ const counter = done => {
                 _done(null);
             }
         },
-    }
+    };
 };
 
 /**
