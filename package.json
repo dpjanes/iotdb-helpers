@@ -16,7 +16,7 @@
         "grunt": "~1.0.1", 
         "grunt-contrib-jshint": "~1.1.0", 
         "grunt-contrib-nodeunit": "~1.0.0", 
-        "grunt-contrib-uglify": "~3.0.1", 
+        "grunt-contrib-uglify": "~3.1.0", 
         "grunt-contrib-watch": "~1.0.0", 
         "grunt-jsbeautifier": "~0.2.13", 
         "jshint-stylish": "~2.2.1", 
@@ -37,5 +37,5 @@
         "cover": "istanbul cover _mocha test", 
         "test": "grunt"
     }, 
-    "version": "3.1.2"
+    "version": "3.1.3"
 }
