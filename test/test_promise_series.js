@@ -218,4 +218,45 @@ describe("promise", function() {
                 .catch(done)
         })
     })
+    describe("roll self", function() {
+        const _add = _.promise.denodeify((_self, done) => {
+            const self = _.d.clone.shallow(_self)
+
+            self.start += self.value;
+
+            done(null, self)
+        })
+
+        it("turned off", function(done) {
+            _.promise.make({
+                start: 0,
+            })
+                .then(_.promise.series({
+                    method: _add,
+                    inputs: [ 1, 2, 3, 4, 5],
+                    input_field: "value",
+                }))
+                .then(_.promise.block(sd => {
+                    assert.deepEqual(sd.start, 0);
+                    done()
+                }))
+                .catch(done)
+        })
+        it("turned on", function(done) {
+            _.promise.make({
+                start: 0,
+            })
+                .then(_.promise.series({
+                    method: _add,
+                    inputs: [ 1, 2, 3, 4, 5],
+                    input_field: "value",
+                    roll_self: true,
+                }))
+                .then(_.promise.block(sd => {
+                    assert.deepEqual(sd.start, 15);
+                    done()
+                }))
+                .catch(done)
+        })
+    })
 })
