@@ -3,13 +3,12 @@
  *
  *  David Janes
  *  IOTDB
- *  2016-01-17
+ *  2017-10-27
  */
 
 "use strict";
 
 const _ = require("iotdb-helpers")
-const async = require("async")
 const assert = require("assert")
 
 describe("promise", function() {
