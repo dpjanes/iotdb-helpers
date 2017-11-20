@@ -13,11 +13,22 @@ const assert = require("assert")
 
 describe("promise/add", function() {
     describe("good", function() {
-        it("string", function(done) {
+        it("string/value", function(done) {
             _.promise.make({
                 "value": 10,
             })
                 .then(_.promise.add("value", 20))
+                .then(_.promise.block(sd => {
+                    assert.deepEqual(sd.value, 20);
+                }))
+                .then(_.promise.done(done))
+                .catch(done)
+        })
+        it("string/function", function(done) {
+            _.promise.make({
+                "value": 10,
+            })
+                .then(_.promise.add("value", sd => sd.value * 2))
                 .then(_.promise.block(sd => {
                     assert.deepEqual(sd.value, 20);
                 }))
