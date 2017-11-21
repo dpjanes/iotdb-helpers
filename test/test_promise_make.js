@@ -13,6 +13,14 @@ const assert = require("assert")
 
 describe("promise/make", function() {
     describe("good", function() {
+        it("no arguments", function(done) {
+            _.promise.make({})
+                .then(_.promise.block(sd => {
+                    assert.ok(_.is.Undefined(sd.value))
+                }))
+                .then(_.promise.done(done))
+                .catch(done)
+        })
         it("dictionary", function(done) {
             _.promise.make({
                 "value": 10,
