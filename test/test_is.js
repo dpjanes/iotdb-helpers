@@ -13,7 +13,6 @@ var _ = require("../helpers")
 
 describe('test_is', function() {
     it('is.Dictionary', function() {
-
         assert.ok(!_.is.Dictionary(null));
         assert.ok(!_.is.Dictionary(undefined));
         assert.ok(!_.is.Dictionary(0));
@@ -193,6 +192,41 @@ describe('test_is', function() {
         assert.ok(_.is.AbsoluteURL("https://example.com/sub#1"));
         assert.ok(!_.is.AbsoluteURL("example.com/hi"));
         assert.ok(_.is.AbsoluteURL("iot:xxx")); // don't love it
+    });
+    it('is.AbsoluteURL', function() {
+        assert.ok(!_.is.IPv4(NaN));
+        assert.ok(!_.is.IPv4(new Date()));
+        assert.ok(!_.is.IPv4(/^hello world$/));
+        assert.ok(!_.is.IPv4(null));
+        assert.ok(!_.is.IPv4(undefined));
+        assert.ok(!_.is.IPv4(0));
+        assert.ok(!_.is.IPv4(1));
+        assert.ok(!_.is.IPv4(0.1));
+        assert.ok(!_.is.IPv4(1.2));
+        assert.ok(!_.is.IPv4(false));
+        assert.ok(!_.is.IPv4(true));
+        assert.ok(!_.is.IPv4(""));
+        assert.ok(!_.is.IPv4("string"));
+        assert.ok(!_.is.IPv4([ "a", ]));
+        assert.ok(!_.is.IPv4({ "a": "n" }));
+        assert.ok(!_.is.IPv4(function() {}));
+
+        assert.ok(_.is.IPv4("0.0.0.0"))
+        assert.ok(_.is.IPv4("1.1.1.1"))
+        assert.ok(_.is.IPv4("255.255.255.255"))
+
+        assert.ok(!_.is.IPv4("0.0.0.0.0"))
+        assert.ok(!_.is.IPv4("1.1.1.1.1"))
+        assert.ok(!_.is.IPv4("255.255.255.255.255"))
+
+        assert.ok(!_.is.IPv4("0.0.0"))
+        assert.ok(!_.is.IPv4("1.1.1"))
+        assert.ok(!_.is.IPv4("255.255.255"))
+
+        assert.ok(!_.is.IPv4("256.0.0.0"))
+        assert.ok(!_.is.IPv4("0.256.0.0"))
+        assert.ok(!_.is.IPv4("0.0.256.0"))
+        assert.ok(!_.is.IPv4("0.0.0.256"))
     });
     it('is.Array.of.String', function() {
         // guarantee fails
