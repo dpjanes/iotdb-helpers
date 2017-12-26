@@ -35,6 +35,21 @@ describe("promise/add", function() {
                 .then(_.promise.done(done))
                 .catch(done)
         })
+        it("string(solo)", function(done) {
+            _.promise.make({
+                "value": 10,
+                "a": {
+                    "b": 300,
+                },
+            })
+                .then(_.promise.add("value:nvalue,a/b"))
+                .then(_.promise.block(sd => {
+                    assert.deepEqual(sd.nvalue, 10);
+                    assert.deepEqual(sd.b, 300);
+                }))
+                .then(_.promise.done(done))
+                .catch(done)
+        })
         it("object/dictionary", function(done) {
             _.promise.make({
                 "value": 10,
