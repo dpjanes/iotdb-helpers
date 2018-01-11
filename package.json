@@ -9,7 +9,7 @@
         "bunyan": "~1.8.12", 
         "underscore": "~1.8.3", 
         "unirest": "~0.5.1", 
-        "url-join": "~2.0.2"
+        "url-join": "~2.0.5"
     }, 
     "description": "Enhanced Underscore with lots of useful functions", 
     "devDependencies": {
@@ -37,5 +37,5 @@
         "cover": "istanbul cover _mocha test", 
         "test": "grunt"
     }, 
-    "version": "3.1.28"
+    "version": "3.1.29"
 }
