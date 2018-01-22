@@ -8,7 +8,6 @@
         "bluebird-q": "~2.1.1",
         "bunyan": "~1.8.12",
         "underscore": "~1.8.3",
-        "unirest": "~0.5.1",
         "url-join": "~2.0.5"
     },
     "description": "Enhanced Underscore with lots of useful functions",
