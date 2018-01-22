@@ -6,10 +6,9 @@
     "dependencies": {
         "async": "~2.6.0", 
         "bluebird-q": "~2.1.1", 
-        "underscore": "~1.8.3", 
-        "url-join": "~2.0.5"
+        "lodash": "~4.17.4"
     }, 
-    "description": "Enhanced Underscore with lots of useful functions", 
+    "description": "Enhanced lodash / underscore", 
     "devDependencies": {
         "grunt": "~1.0.1", 
         "grunt-contrib-jshint": "~1.1.0", 
@@ -22,7 +21,6 @@
         "request": "~2.83.0"
     }, 
     "homepage": "https://github.com/dpjanes/node-iotdb", 
-    "iotdb": {}, 
     "license": "Apache-2.0", 
     "main": "helpers.js", 
     "name": "iotdb-helpers", 
@@ -32,8 +30,8 @@
         "url": "https://github.com/dpjanes/iotdb-helpers"
     }, 
     "scripts": {
-        "cover": "istanbul cover _mocha test", 
-        "test": "grunt"
+        "cover": "nyc --reporter=html mocha --recursive", 
+        "test": "mocha --recursive --bail"
     }, 
-    "version": "3.1.30"
+    "version": "3.2.2"
 }
