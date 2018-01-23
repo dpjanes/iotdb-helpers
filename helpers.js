@@ -24,10 +24,11 @@
 
 "use strict";
 
-exports.underscore = require('underscore');
+exports.lodash = require('lodash');
+exports.underscore = exports.lodash;
 
 const modules = [
-    exports.underscore,
+    exports.lodash,
     require('./lib/ld'),
     require('./lib/id'),
     require('./lib/d'),
@@ -53,26 +54,28 @@ for (var mi in modules) {
     }
 }
 
+// underscore / lodash compatibility
+exports.mapObject = exports.mapValues;
+exports.pairs = exports.toPairs;
+exports.object = exports.zipObject;
+exports.flatten = (a, shallow) => shallow ? exports.lodash.flatten(a) : exports.lodash.flattenDeep(a);
+
+// misc 
 exports.noop = function () {};
+/*
 exports.spy = name => value => {
     console.log(name, value);
     return value;
 };
+*/
 
 // these are aliases
 exports.queue = require('./lib/q').q.queue;
 exports.defaults = require('./lib/d').d.compose.shallow;
 
 // these are likely to be deleted
-exports.make_done = function (done) {
-    return function (value) {
-        done(null, value);
-    };
-};
-exports.make_error = function (done) {
-    return function (error) {
-        done(error);
-    };
-};
+exports.make_done = done => value => done(null, value);
+exports.make_error = done => error => done(error);
 
+// this should be deleted?
 exports.counter = require("./counter").counter;

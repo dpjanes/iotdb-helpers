@@ -1,18 +1,12 @@
 # iotdb-helpers
 
-Lots of useful functions, built as an overlay on underscore.
+Lots of useful functions, built as an overlay on <strike>underscore</strike>lodash.
 
 <img src="https://raw.githubusercontent.com/dpjanes/iotdb-homestar/master/docs/HomeStar.png" align="right" />
 
 # Introduction
 
-These are tons of little useful functions. If you're using [IOTDB](https://github.com/dpjanes/node-iotdb) this
-_always_ comes along for free:
-
-    const iotdb = require("iotdb");
-    const _ = iotdb._;
-
-If you need to use this stand-alone:
+These are tons of little useful functions. 
 
     const _ = require("iotdb-helpers");
 
@@ -68,7 +62,7 @@ Linked Data: work semantic web type LD data, where URIs are used as keys and mul
 
 ## logger
 
-Loggger: log stuff (using Bunyan by default)
+Loggger: log stuff (looks like <a href="https://github.com/trentm/node-bunyan">bunyan</a> but isn't - can be swapped in though)
 
 ## net
 
