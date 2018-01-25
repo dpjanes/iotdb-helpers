@@ -123,7 +123,7 @@ describe('test_hash', function() {
         it('complex', function() {
             var value = [ "now is the time", "for all" ];
             var result = _.hash.short(value);
-            var expect = 'qOpBe4vs';
+            var expect = "C-29WhKG";
 
             assert.strictEqual(result, expect);
         });
