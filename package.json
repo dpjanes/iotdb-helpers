@@ -6,7 +6,7 @@
     "dependencies": {
         "async": "~2.6.0", 
         "bluebird-q": "~2.1.1", 
-        "lodash": "~4.17.5"
+        "lodash": "~4.17.10"
     }, 
     "description": "Enhanced lodash / underscore", 
     "devDependencies": {
@@ -14,7 +14,7 @@
         "grunt-contrib-jshint": "~1.1.0", 
         "grunt-contrib-nodeunit": "~1.0.0", 
         "grunt-contrib-uglify": "~3.3.0", 
-        "grunt-contrib-watch": "~1.0.0", 
+        "grunt-contrib-watch": "~1.0.1", 
         "grunt-jsbeautifier": "~0.2.13", 
         "jshint-stylish": "~2.2.1", 
         "load-grunt-tasks": "~3.5.2", 
@@ -33,5 +33,5 @@
         "cover": "nyc --reporter=html mocha --recursive", 
         "test": "mocha --recursive --bail"
     }, 
-    "version": "3.2.13"
+    "version": "3.2.14"
 }
