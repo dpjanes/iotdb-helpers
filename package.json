@@ -6,7 +6,7 @@
     "dependencies": {
         "async": "~2.6.1", 
         "bluebird-q": "~2.1.1", 
-        "lodash": "~4.17.10"
+        "lodash": "~4.17.11"
     }, 
     "description": "Enhanced lodash / underscore", 
     "devDependencies": {
@@ -18,7 +18,7 @@
         "grunt-jsbeautifier": "~0.2.13", 
         "jshint-stylish": "~2.2.1", 
         "load-grunt-tasks": "~3.5.2", 
-        "request": "~2.87.0"
+        "request": "~2.88.0"
     }, 
     "homepage": "https://github.com/dpjanes/node-iotdb", 
     "license": "Apache-2.0", 
@@ -33,5 +33,5 @@
         "cover": "nyc --reporter=html mocha --recursive", 
         "test": "mocha --recursive --bail"
     }, 
-    "version": "3.2.20"
+    "version": "3.2.21"
 }
