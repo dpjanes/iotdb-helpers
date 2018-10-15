@@ -53,6 +53,8 @@ describe("promise/make (rebind)", function() {
                 .then(_.promise.done(done))
                 .catch(done)
         })
+        /*
+        */
     })
     describe("all-up", function() {
         it("dictionary", function(done) {
@@ -63,6 +65,7 @@ describe("promise/make (rebind)", function() {
                 .add({
                     hello: "world",
                 })
+                .then(_.promise.noop)
                 .make(sd => {
                     sd.world = "3"
                 })
@@ -72,4 +75,6 @@ describe("promise/make (rebind)", function() {
                 .end(done)
         })
     })
+    /*
+    */
 })
