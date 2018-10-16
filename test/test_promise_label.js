@@ -24,6 +24,9 @@ f1.required = {
 }
 f1.allows = {
     "b": [ _.is.String, _.is.Dictionary, 3 ],
+    "c": {
+        "subc": _.is.String,
+    },
 }
 
 describe("promise - labeled", function() {
@@ -55,6 +58,29 @@ describe("promise - labeled", function() {
                 .catch(error => {
                     done(null)
                 })
+        })
+        it("nested wrong type", function(done) {
+            _.promise.make({
+                "a": "hello",
+                "c": {
+                    "subc": 1,
+                }
+            })
+                .then(f1)
+                .then(sd => { throw new Error("didn't expect to get here") })
+                .catch(error => {
+                    done(null)
+                })
+        })
+        it("nested correct type", function(done) {
+            _.promise.make({
+                "a": "hello",
+                "c": {
+                    "subc": "Hello",
+                }
+            })
+                .then(f1)
+                .end(done)
         })
     })
 })
