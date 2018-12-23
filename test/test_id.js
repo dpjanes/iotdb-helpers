@@ -14,6 +14,42 @@ var _ = require("../helpers")
 
 /* --- tests --- */
 describe('test_id', function(){
+    describe('safe', function(){
+        describe('safe.encode', function(){
+            it('blank', function() {
+                var src = "";
+                var expected = "_";
+                var slugged = _.id.safe.encode(src);
+                assert.equal(expected, slugged);
+            });
+            it('string', function() {
+                var src = "abcdefghijklmnopqrstuvwxyz";
+                var expected = "_6162636465666768696a6b6c6d6e6f707172737475767778797a";
+                var slugged = _.id.safe.encode(src);
+                assert.equal(expected, slugged);
+            });
+        })
+        describe('safe.decode', function(){
+            it('empty', function() {
+                var src = "";
+                var expected = "";
+                var slugged = _.id.safe.decode(src);
+                assert.equal(expected, slugged);
+            });
+            it('_', function() {
+                var src = "_";
+                var expected = "";
+                var slugged = _.id.safe.decode(src);
+                assert.equal(expected, slugged);
+            });
+            it('string', function() {
+                var src = "_6162636465666768696a6b6c6d6e6f707172737475767778797a";
+                var expected = "abcdefghijklmnopqrstuvwxyz";
+                var slugged = _.id.safe.decode(src);
+                assert.equal(expected, slugged);
+            });
+        })
+    })
     describe('slugify', function(){
         it('blank', function() {
             var src = "";
