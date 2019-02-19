@@ -1,5 +1,5 @@
 /*
- *  validate.js
+ *  test/validate.js
  *
  *  David Janes
  *  IOTDB.org
@@ -23,83 +23,9 @@
 "use strict"
 
 const _ = require("..")
+const validate = require("../lib/validate").validate
 
 const assert = require("assert")
-const util = require("util")
-
-/**
- */
-function ValidationError(method, rule, got) {
-    Error.call(this, "ValidationError");
-
-    console.log("===")
-    console.log("ValidationError")
-    if (method.method) {
-        console.log("method:", method.method)
-    } else if (method.name) {
-        console.log("method:", method.name)
-    } else {
-        console.log("method:", method)
-    }
-    if (rule.message) {
-        console.log("message:", rule.message)
-    }
-    console.log("key:", rule.key)
-    console.log("expected:", rule.allows.map(a => a.method || a.name || a.toString()).join(" | "))
-    console.log("required:", rule.required)
-    console.log("got (type):", typeof got)
-    console.log("got (value):", got)
-    console.log("==")
-
-    this._ValidationError = true
-    this.message = "ValidationError"
-    this.statusCode = 500;
-}
-
-util.inherits(ValidationError, Error);
-
-/**
- */
-const validate = (self, method, rules) => {
-    const _ = require("..")
-
-    assert.ok(_.is.Dictionary(self))
-    assert.ok(_.is.Array.of.Dictionary(rules))
-
-    rules.forEach(rule => {
-        assert.ok(_.is.String(rule.key))
-
-        const got = _.d.get(self, rule.key)
-        if (!rule.required && _.is.Nullish(got)) {
-            return
-        }
-
-        let ok = null
-
-        rule.allows.forEach(allow => {
-            assert.ok(_.is.Function(allow))
-
-            if (ok) {
-            } else if (allow(got)) {
-                ok = true
-            } else {
-                ok = false
-            }
-        })
-
-        if (ok === false) {
-            throw new ValidationError(method, rule, got)
-        }
-    })
-
-}
-
-/**
- *  API
- */
-exports.validate = validate
-
-/*
 
 // ----
 const trap = f => {
@@ -535,4 +461,3 @@ describe("validate", function() {
         })
     })
 })
-*/
