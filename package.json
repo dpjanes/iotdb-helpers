@@ -6,7 +6,8 @@
     "dependencies": {
         "async": "~2.6.2", 
         "bluebird-q": "~2.1.1", 
-        "lodash": "~4.17.11"
+        "lodash": "~4.17.11", 
+        "uuid": "~3.3.2"
     }, 
     "description": "Pipe-oriented programming built on Lodash", 
     "homepage": "https://github.com/dpjanes/node-iotdb", 
@@ -22,5 +23,5 @@
         "cover": "nyc --reporter=html mocha --recursive", 
         "test": "mocha --recursive --bail"
     }, 
-    "version": "3.3.8"
+    "version": "3.3.9"
 }
