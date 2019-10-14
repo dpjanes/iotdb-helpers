@@ -399,4 +399,34 @@ describe('test_is', function() {
         assert.strictEqual(_.is.unsorted(true, true), 0)
         assert.strictEqual(_.is.unsorted(false, false), 0)
     })
+    it('is.QName', function() {
+
+        assert.ok(!_.is.QName(NaN));
+        assert.ok(!_.is.QName(new Date()));
+        assert.ok(!_.is.QName(/^hello world$/));
+        assert.ok(!_.is.QName(null));
+        assert.ok(!_.is.QName(undefined));
+        assert.ok(!_.is.QName(0));
+        assert.ok(!_.is.QName(1));
+        assert.ok(!_.is.QName(0.1));
+        assert.ok(!_.is.QName(1.2));
+        assert.ok(!_.is.QName(false));
+        assert.ok(!_.is.QName(true));
+        assert.ok(!_.is.QName(""));
+        assert.ok(!_.is.QName("string"));
+        assert.ok(!_.is.QName([ "a", ]));
+        assert.ok(!_.is.QName({ "a": "n" }));
+        assert.ok(!_.is.QName(function() {}));
+
+        assert.ok(!_.is.QName("ftp://example.com"));
+        assert.ok(!_.is.QName("ftp://example.com/sub#1"));
+        assert.ok(!_.is.QName("http://example.com"));
+        assert.ok(!_.is.QName("http://example.com/sub#1"));
+        assert.ok(!_.is.QName("https://example.com"));
+        assert.ok(!_.is.QName("https://example.com/sub#1"));
+        assert.ok(!_.is.QName("example.com/hi"));
+        assert.ok(_.is.QName("iot:xxx")); 
+        assert.ok(_.is.QName("iot000:xxx")); 
+        assert.ok(_.is.QName("IOT-000:xxx-ABC000_")); 
+    });
 })
