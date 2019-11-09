@@ -73,4 +73,34 @@ describe('test_d_transform:', function(){
             dictionary: { a: 'B' } }
         assert.ok(_.is.Equal(outd, expectd));
     });
+    describe('d/transform/underscore_case', function() {
+        it("object", function() {
+            const input = {
+                a: 1,
+                theWorld: "bC",
+                die_antwort: "a_band",
+                nestedArray: [
+                    {
+                        "the1975": "a band",
+                        "theWho": "anotherBand",
+                    },
+                ],
+            }
+            const got = _.d.transform.underscore_case(input)
+            const expected = {
+              "a": 1,
+              "the_world": "bC",
+              "die_antwort": "a_band",
+              "nested_array": [
+                {
+                  "the1975": "a band",
+                  "theWho": "anotherBand"
+                }
+              ]
+            }
+
+            // console.log(JSON.stringify(got, null, 2))
+            assert.deepStrictEqual(got, expected)
+        })
+    })
 })
