@@ -67,7 +67,7 @@ describe("parameterize", function() {
             "a": null,
             "b": null,
         }
-        capture.p = _.parameterize(capture)
+        capture.p = _.p(capture)
 
         _.promise({
             a: 1,
@@ -83,10 +83,10 @@ describe("parameterize", function() {
     })
     it("null arguments - a/b should become null", function(done) {
         capture.params = {
-            "a": null,
-            "b": null,
+            "a": _.p.normal,
+            "b": _.p.normal,
         }
-        capture.p = _.parameterize(capture)
+        capture.p = _.p(capture)
 
         _.promise({
             a: 1,
@@ -102,10 +102,10 @@ describe("parameterize", function() {
     })
     it("normal arguments", function(done) {
         capture.params = {
-            "a": null,
-            "b": null,
+            "a": _.p.normal,
+            "b": _.p.normal,
         }
-        capture.p = _.parameterize(capture)
+        capture.p = _.p(capture)
 
         _.promise({
             a: 1,
@@ -119,12 +119,12 @@ describe("parameterize", function() {
             .end(done)
 
     })
-    it("ASIS", function(done) {
+    it("asis", function(done) {
         capture.params = {
-            "a": _.parameterize.ASIS,
-            "b": _.parameterize.ASIS,
+            "a": _.p.asis,
+            "b": _.p.asis,
         }
-        capture.p = _.parameterize(capture)
+        capture.p = _.p(capture)
 
         _.promise({
             a: 1,
@@ -138,12 +138,12 @@ describe("parameterize", function() {
             .end(done)
 
     })
-    it("FALLTHROUGH_UNDEFINED", function(done) {
+    it("otherwise", function(done) {
         capture.params = {
-            "a": _.parameterize.FALLTHROUGH_UNDEFINED,
-            "b": _.parameterize.FALLTHROUGH_UNDEFINED,
+            "a": _.p.otherwise,
+            "b": _.p.otherwise,
         }
-        capture.p = _.parameterize(capture)
+        capture.p = _.p(capture)
 
         _.promise({
             a: 1,

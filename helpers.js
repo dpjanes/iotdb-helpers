@@ -52,7 +52,7 @@ for (var mi in modules) {
     }
 }
 
-exports.parameterize = require("./lib/parameterize").parameterize
+exports.p = require("./lib/p").p
 
 // underscore / lodash compatibility
 exports.mapObject = exports.mapValues;
