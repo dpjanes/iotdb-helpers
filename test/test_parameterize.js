@@ -63,16 +63,17 @@ describe("parameterize", function() {
 
     })
     it("no arguments - b should become null", function(done) {
-        const p = _.parameterize(capture, {
+        capture.params = {
             "a": null,
             "b": null,
-        })
+        }
+        capture.p = _.parameterize(capture)
 
         _.promise({
             a: 1,
         })
             .then(reset)
-            .then(p())
+            .then(capture.p())
             .make(sd => {
                 assert.deepEqual(captured, { a: 1, b: null })
                 assert.deepEqual(sd, { a: 1, b: null })
@@ -81,16 +82,17 @@ describe("parameterize", function() {
 
     })
     it("null arguments - a/b should become null", function(done) {
-        const p = _.parameterize(capture, {
+        capture.params = {
             "a": null,
             "b": null,
-        })
+        }
+        capture.p = _.parameterize(capture)
 
         _.promise({
             a: 1,
         })
             .then(reset)
-            .then(p(null, null))
+            .then(capture.p(null, null))
             .make(sd => {
                 assert.deepEqual(captured, { a: null, b: null })
                 assert.deepEqual(sd, { a: null, b: null })
@@ -99,16 +101,17 @@ describe("parameterize", function() {
 
     })
     it("normal arguments", function(done) {
-        const p = _.parameterize(capture, {
+        capture.params = {
             "a": null,
             "b": null,
-        })
+        }
+        capture.p = _.parameterize(capture)
 
         _.promise({
             a: 1,
         })
             .then(reset)
-            .then(p("a", "b"))
+            .then(capture.p("a", "b"))
             .make(sd => {
                 assert.deepEqual(captured, { a: "a", b: "b" })
                 assert.deepEqual(sd, { a: "a", b: "b" })
@@ -117,16 +120,17 @@ describe("parameterize", function() {
 
     })
     it("ASIS", function(done) {
-        const p = _.parameterize(capture, {
+        capture.params = {
             "a": _.parameterize.ASIS,
             "b": _.parameterize.ASIS,
-        })
+        }
+        capture.p = _.parameterize(capture)
 
         _.promise({
             a: 1,
         })
             .then(reset)
-            .then(p())
+            .then(capture.p())
             .make(sd => {
                 assert.deepEqual(captured, { a: undefined, b: undefined })
                 assert.deepEqual(sd, { a: "A-UNDEF", b: "B-UNDEF" })
@@ -135,16 +139,17 @@ describe("parameterize", function() {
 
     })
     it("FALLTHROUGH_UNDEFINED", function(done) {
-        const p = _.parameterize(capture, {
+        capture.params = {
             "a": _.parameterize.FALLTHROUGH_UNDEFINED,
             "b": _.parameterize.FALLTHROUGH_UNDEFINED,
-        })
+        }
+        capture.p = _.parameterize(capture)
 
         _.promise({
             a: 1,
         })
             .then(reset)
-            .then(p())
+            .then(capture.p())
             .make(sd => {
                 assert.deepEqual(captured, { a: 1, b: undefined })
                 assert.deepEqual(sd, { a: 1, b: "B-UNDEF" })
