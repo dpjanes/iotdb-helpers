@@ -9,7 +9,7 @@
         "lodash": "~4.17.15", 
         "uuid": "~3.3.3"
     }, 
-    "description": "Pipe-oriented programming built on Lodash", 
+    "description": "POP utilities wrapping lodash", 
     "homepage": "https://github.com/dpjanes/node-iotdb", 
     "license": "Apache-2.0", 
     "main": "helpers.js", 
@@ -23,5 +23,5 @@
         "cover": "nyc --reporter=html mocha --recursive", 
         "test": "mocha --recursive --bail"
     }, 
-    "version": "3.3.16"
+    "version": "3.4.1"
 }
