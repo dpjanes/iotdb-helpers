@@ -64,8 +64,8 @@ describe("parameterize", function() {
     })
     it("no arguments - b should become null", function(done) {
         capture.params = {
-            "a": null,
-            "b": null,
+            "a": _.p.normal,
+            "b": _.p.normal,
         }
         capture.p = _.p(capture)
 
@@ -81,7 +81,7 @@ describe("parameterize", function() {
             .end(done)
 
     })
-    it("null arguments - a/b should become null", function(done) {
+    it("null arguments - b should become null", function(done) {
         capture.params = {
             "a": _.p.normal,
             "b": _.p.normal,
@@ -94,8 +94,8 @@ describe("parameterize", function() {
             .then(reset)
             .then(capture.p(null, null))
             .make(sd => {
-                assert.deepEqual(captured, { a: null, b: null })
-                assert.deepEqual(sd, { a: null, b: null })
+                assert.deepEqual(captured, { a: 1, b: null })
+                assert.deepEqual(sd, { a: 1, b: null })
             })
             .end(done)
 
