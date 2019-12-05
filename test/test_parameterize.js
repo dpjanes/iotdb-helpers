@@ -157,4 +157,45 @@ describe("parameterize", function() {
             .end(done)
 
     })
+    it("passthroughs (1)", function(done) {
+        capture.params = {
+            "a": 1234,
+            "b": "abcd",
+        }
+        capture.p = _.p(capture)
+
+        _.promise({
+        })
+            .then(reset)
+            .then(capture.p())
+            .make(sd => {
+                assert.deepEqual(captured, { a: 1234, b: "abcd" })
+                assert.deepEqual(sd, { a: 1234, b: "abcd" })
+            })
+            .end(done)
+
+    })
+    it("passthroughs (2)", function(done) {
+        const NEW_A = {
+        }
+        const NEW_B = {
+            "a": [ 1, 2, 3, 4],
+        }
+        capture.params = {
+            "a": NEW_A,
+            "b": NEW_B,
+        }
+        capture.p = _.p(capture)
+
+        _.promise({
+        })
+            .then(reset)
+            .then(capture.p())
+            .make(sd => {
+                assert.deepEqual(captured, { a: NEW_A, b: NEW_B })
+                assert.deepEqual(sd, { a: NEW_A, b: NEW_B })
+            })
+            .end(done)
+
+    })
 })
