@@ -52,6 +52,7 @@ for (var mi in modules) {
     }
 }
 
+exports.i = require("./lib/i").i
 exports.p = require("./lib/p").p
 
 // underscore / lodash compatibility
