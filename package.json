@@ -7,7 +7,7 @@
         "async": "~2.6.2", 
         "bluebird-q": "~2.1.1", 
         "lodash": "~4.17.15", 
-        "uuid": "~3.3.3"
+        "uuid": "~3.4.0"
     }, 
     "description": "POP utilities wrapping lodash", 
     "homepage": "https://github.com/dpjanes/node-iotdb", 
@@ -23,5 +23,5 @@
         "cover": "nyc --reporter=html mocha --recursive", 
         "test": "mocha --recursive --bail"
     }, 
-    "version": "3.4.8"
+    "version": "3.4.9"
 }
