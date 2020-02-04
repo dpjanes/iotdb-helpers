@@ -44,6 +44,7 @@ const modules = [
     require('./lib/coerce'),
     require('./lib/cfg'),
     require('./lib/promise'),
+    require('./lib/text'),
 ];
 for (var mi in modules) {
     var module = modules[mi];
