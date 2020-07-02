@@ -278,6 +278,12 @@ describe("coerce", function() {
                 it("->number", function() {
                     assert.strictEqual(coerce.coerce("99.1", "iot:type.number"), 99.1);
                 });
+                it("->number%", function() {
+                    assert.strictEqual(coerce.coerce("99.1%", "iot:type.number"), .991);
+                });
+                it("->number  %", function() {
+                    assert.strictEqual(coerce.coerce("99.1  %", "iot:type.number"), .991);
+                });
             });
             describe("string(+positive-number)", function() {
                 it("->boolean", function() {
@@ -299,6 +305,12 @@ describe("coerce", function() {
                 });
                 it("->number", function() {
                     assert.strictEqual(coerce.coerce("-99.1", "iot:type.number"), -99.1);
+                });
+                it("->number%", function() {
+                    assert.strictEqual(coerce.coerce("-99.1%", "iot:type.number"), -0.991);
+                });
+                it("->number  %", function() {
+                    assert.strictEqual(coerce.coerce("-99.1  %", "iot:type.number"), -0.991);
                 });
             });
         });
