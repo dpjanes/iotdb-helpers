@@ -61,6 +61,14 @@ describe('test_d:', function() {
                 assert.deepEqual(expect, got);
             });
         });
+        it('path - /', function() {
+            {
+                var expect = d1d
+                var got = _.d.get(d1d, "/", null)
+
+                assert.deepEqual(expect, got)
+            }
+        })
         it('path - no leading /', function() {
             {
                 var expect = d1d["dict0"]["string0"];
