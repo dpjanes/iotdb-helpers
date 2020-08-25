@@ -45,6 +45,7 @@ const modules = [
     require('./lib/cfg'),
     require('./lib/promise'),
     require('./lib/text'),
+    require('./lib/validate'),
 ];
 for (var mi in modules) {
     var module = modules[mi];

@@ -23,8 +23,6 @@
 "use strict"
 
 const _ = require("..")
-const validate = require("../lib/validate").validate
-const flatten = require("../lib/validate").flatten
 
 const assert = require("assert")
 
@@ -69,7 +67,7 @@ describe("validate", function() {
         describe("top", function() {
             it("single / ok", function() {
                 const expected = null
-                const result = trap(() => validate(self, method, [
+                const result = trap(() => _.validate.validate(self, method, [
                     {
                         key: "number",
                         allows: [ _.is.Number ],
@@ -81,7 +79,7 @@ describe("validate", function() {
             })
             it("single / ok", function() {
                 const expected = null
-                const result = trap(() => validate(self, method, [
+                const result = trap(() => _.validate.validate(self, method, [
                     {
                         key: "array-of-string",
                         allows: [ _.is.Array.of.String, ],
@@ -93,7 +91,7 @@ describe("validate", function() {
             })
             it("multiple / ok", function() {
                 const expected = null
-                const result = trap(() => validate(self, method, [
+                const result = trap(() => _.validate.validate(self, method, [
                     {
                         key: "number",
                         allows: [ _.is.String, _.is.Number ],
@@ -105,7 +103,7 @@ describe("validate", function() {
             })
             it("single / bad", function() {
                 const expected = null
-                const result = trap(() => validate(self, method, [
+                const result = trap(() => _.validate.validate(self, method, [
                     {
                         key: "number",
                         allows: [ _.is.String ],
@@ -117,7 +115,7 @@ describe("validate", function() {
             })
             it("multiple / bad", function() {
                 const expected = null
-                const result = trap(() => validate(self, method, [
+                const result = trap(() => _.validate.validate(self, method, [
                     {
                         key: "number",
                         allows: [ _.is.String, _.is.Boolean, _.is.Array ],
@@ -129,7 +127,7 @@ describe("validate", function() {
             })
             it("single / missing", function() {
                 const expected = null
-                const result = trap(() => validate(self, method, [
+                const result = trap(() => _.validate.validate(self, method, [
                     {
                         key: "numberX",
                         allows: [ _.is.String ],
@@ -141,7 +139,7 @@ describe("validate", function() {
             })
             it("multiple / missing", function() {
                 const expected = null
-                const result = trap(() => validate(self, method, [
+                const result = trap(() => _.validate.validate(self, method, [
                     {
                         key: "numberX",
                         allows: [ _.is.String, _.is.Boolean, _.is.Array ],
@@ -155,7 +153,7 @@ describe("validate", function() {
         describe("deep", function() {
             it("single / ok", function() {
                 const expected = null
-                const result = trap(() => validate(self, method, [
+                const result = trap(() => _.validate.validate(self, method, [
                     {
                         key: "deep/layer2/layer3/a",
                         allows: [ _.is.Number ],
@@ -167,7 +165,7 @@ describe("validate", function() {
             })
             it("single / ok", function() {
                 const expected = null
-                const result = trap(() => validate(self, method, [
+                const result = trap(() => _.validate.validate(self, method, [
                     {
                         key: "deep/layer2/layer3/values",
                         allows: [ _.is.Array.of.Number, ],
@@ -179,7 +177,7 @@ describe("validate", function() {
             })
             it("single / bad", function() {
                 const expected = null
-                const result = trap(() => validate(self, method, [
+                const result = trap(() => _.validate.validate(self, method, [
                     {
                         key: "deep/layer2/layer3/a",
                         allows: [ _.is.String ],
@@ -191,7 +189,7 @@ describe("validate", function() {
             })
             it("single / bad", function() {
                 const expected = null
-                const result = trap(() => validate(self, method, [
+                const result = trap(() => _.validate.validate(self, method, [
                     {
                         key: "deep/layer2/layer3/values",
                         allows: [ _.is.Array.of.String, ],
@@ -203,7 +201,7 @@ describe("validate", function() {
             })
             it("single / missing", function() {
                 const expected = null
-                const result = trap(() => validate(self, method, [
+                const result = trap(() => _.validate.validate(self, method, [
                     {
                         key: "deep/layer2/layer3/aX",
                         allows: [ _.is.NaN ],
@@ -215,7 +213,7 @@ describe("validate", function() {
             })
             it("single / missing", function() {
                 const expected = null
-                const result = trap(() => validate(self, method, [
+                const result = trap(() => _.validate.validate(self, method, [
                     {
                         key: "deep/layer2/layer3/valuesX",
                         allows: [ _.is.Array.of.Dictionary, ],
@@ -227,7 +225,7 @@ describe("validate", function() {
             })
             it("multiple / ok", function() {
                 const expected = null
-                const result = trap(() => validate(self, method, [
+                const result = trap(() => _.validate.validate(self, method, [
                     {
                         key: "deep/layer2/layer3/values",
                         allows: [ _.is.Array.of.Dictionary, _.is.Array.of.String, _.is.Array.of.Number, ],
@@ -239,7 +237,7 @@ describe("validate", function() {
             })
             it("multiple / bad", function() {
                 const expected = null
-                const result = trap(() => validate(self, method, [
+                const result = trap(() => _.validate.validate(self, method, [
                     {
                         key: "deep/layer2/layer3/a",
                         allows: [ _.is.Array.of.Dictionary, _.is.Array.of.String, _.is.Array.of.Number, ],
@@ -251,7 +249,7 @@ describe("validate", function() {
             })
             it("multiple / missing", function() {
                 const expected = null
-                const result = trap(() => validate(self, method, [
+                const result = trap(() => _.validate.validate(self, method, [
                     {
                         key: "deep/layer2/layer3/aX",
                         allows: [ _.is.Array.of.Dictionary, _.is.Array.of.String, _.is.Array.of.Number, ],
@@ -267,7 +265,7 @@ describe("validate", function() {
         describe("top", function() {
             it("single / ok", function() {
                 const expected = null
-                const result = trap(() => validate(self, method, [
+                const result = trap(() => _.validate.validate(self, method, [
                     {
                         key: "number",
                         allows: [ _.is.Number ],
@@ -279,7 +277,7 @@ describe("validate", function() {
             })
             it("single / ok", function() {
                 const expected = null
-                const result = trap(() => validate(self, method, [
+                const result = trap(() => _.validate.validate(self, method, [
                     {
                         key: "array-of-string",
                         allows: [ _.is.Array.of.String, ],
@@ -291,7 +289,7 @@ describe("validate", function() {
             })
             it("multiple / ok", function() {
                 const expected = null
-                const result = trap(() => validate(self, method, [
+                const result = trap(() => _.validate.validate(self, method, [
                     {
                         key: "number",
                         allows: [ _.is.String, _.is.Number ],
@@ -303,7 +301,7 @@ describe("validate", function() {
             })
             it("single / bad", function() {
                 const expected = null
-                const result = trap(() => validate(self, method, [
+                const result = trap(() => _.validate.validate(self, method, [
                     {
                         key: "number",
                         allows: [ _.is.String ],
@@ -315,7 +313,7 @@ describe("validate", function() {
             })
             it("multiple / bad", function() {
                 const expected = null
-                const result = trap(() => validate(self, method, [
+                const result = trap(() => _.validate.validate(self, method, [
                     {
                         key: "number",
                         allows: [ _.is.String, _.is.Boolean, _.is.Array ],
@@ -327,7 +325,7 @@ describe("validate", function() {
             })
             it("single / missing", function() {
                 const expected = null
-                const result = trap(() => validate(self, method, [
+                const result = trap(() => _.validate.validate(self, method, [
                     {
                         key: "numberX",
                         allows: [ _.is.String ],
@@ -339,7 +337,7 @@ describe("validate", function() {
             })
             it("multiple / missing", function() {
                 const expected = null
-                const result = trap(() => validate(self, method, [
+                const result = trap(() => _.validate.validate(self, method, [
                     {
                         key: "numberX",
                         allows: [ _.is.String, _.is.Boolean, _.is.Array ],
@@ -353,7 +351,7 @@ describe("validate", function() {
         describe("deep", function() {
             it("single / ok", function() {
                 const expected = null
-                const result = trap(() => validate(self, method, [
+                const result = trap(() => _.validate.validate(self, method, [
                     {
                         key: "deep/layer2/layer3/a",
                         allows: [ _.is.Number ],
@@ -365,7 +363,7 @@ describe("validate", function() {
             })
             it("single / ok", function() {
                 const expected = null
-                const result = trap(() => validate(self, method, [
+                const result = trap(() => _.validate.validate(self, method, [
                     {
                         key: "deep/layer2/layer3/values",
                         allows: [ _.is.Array.of.Number, ],
@@ -377,7 +375,7 @@ describe("validate", function() {
             })
             it("single / bad", function() {
                 const expected = null
-                const result = trap(() => validate(self, method, [
+                const result = trap(() => _.validate.validate(self, method, [
                     {
                         key: "deep/layer2/layer3/a",
                         allows: [ _.is.String ],
@@ -389,7 +387,7 @@ describe("validate", function() {
             })
             it("single / bad", function() {
                 const expected = null
-                const result = trap(() => validate(self, method, [
+                const result = trap(() => _.validate.validate(self, method, [
                     {
                         key: "deep/layer2/layer3/values",
                         allows: [ _.is.Array.of.String, ],
@@ -401,7 +399,7 @@ describe("validate", function() {
             })
             it("single / missing", function() {
                 const expected = null
-                const result = trap(() => validate(self, method, [
+                const result = trap(() => _.validate.validate(self, method, [
                     {
                         key: "deep/layer2/layer3/aX",
                         allows: [ _.is.NaN ],
@@ -413,7 +411,7 @@ describe("validate", function() {
             })
             it("single / missing", function() {
                 const expected = null
-                const result = trap(() => validate(self, method, [
+                const result = trap(() => _.validate.validate(self, method, [
                     {
                         key: "deep/layer2/layer3/valuesX",
                         allows: [ _.is.Array.of.Dictionary, ],
@@ -425,7 +423,7 @@ describe("validate", function() {
             })
             it("multiple / ok", function() {
                 const expected = null
-                const result = trap(() => validate(self, method, [
+                const result = trap(() => _.validate.validate(self, method, [
                     {
                         key: "deep/layer2/layer3/values",
                         allows: [ _.is.Array.of.Dictionary, _.is.Array.of.String, _.is.Array.of.Number, ],
@@ -437,7 +435,7 @@ describe("validate", function() {
             })
             it("multiple / bad", function() {
                 const expected = null
-                const result = trap(() => validate(self, method, [
+                const result = trap(() => _.validate.validate(self, method, [
                     {
                         key: "deep/layer2/layer3/a",
                         allows: [ _.is.Array.of.Dictionary, _.is.Array.of.String, _.is.Array.of.Number, ],
@@ -449,7 +447,7 @@ describe("validate", function() {
             })
             it("multiple / missing", function() {
                 const expected = null
-                const result = trap(() => validate(self, method, [
+                const result = trap(() => _.validate.validate(self, method, [
                     {
                         key: "deep/layer2/layer3/aX",
                         allows: [ _.is.Array.of.Dictionary, _.is.Array.of.String, _.is.Array.of.Number, ],
@@ -465,7 +463,7 @@ describe("validate", function() {
 
 describe("flatten", function() {
     it("works - flat", function() {
-        const got = flatten({
+        const got = _.validate.flatten({
             "a": _.is.String,
         }, true)
 
@@ -479,7 +477,7 @@ describe("flatten", function() {
         assert.deepEqual(got, expect)
     })
     it("works - flat null", function() {
-        const got = flatten({
+        const got = _.validate.flatten({
             "a": null,
         }, true)
 
@@ -493,7 +491,7 @@ describe("flatten", function() {
         assert.deepEqual(got, expect)
     })
     it("works - flat, array", function() {
-        const got = flatten({
+        const got = _.validate.flatten({
             "b": [ _.is.String, _.is.Number ],
         }, true)
 
@@ -507,7 +505,7 @@ describe("flatten", function() {
         assert.deepEqual(got, expect)
     })
     it("works - flat, array with Null and String", function() {
-        const got = flatten({
+        const got = _.validate.flatten({
             "c": [ _.is.Dictionary, null, "expect a dictionary" ],
         }, true)
 
@@ -522,7 +520,7 @@ describe("flatten", function() {
         assert.deepEqual(got, expect)
     })
     it("works - deep, array with String", function() {
-        const got = flatten({
+        const got = _.validate.flatten({
             "a": _.is.String,
             "d": {
                 "e": {
