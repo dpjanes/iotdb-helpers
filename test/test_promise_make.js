@@ -14,32 +14,30 @@ const assert = require("assert")
 describe("promise/make", function() {
     describe("good", function() {
         it("no arguments", function(done) {
-            _.promise.make({})
-                .then(_.promise.block(sd => {
+            _.promise({})
+                .make(sd => {
                     assert.ok(_.is.Undefined(sd.value))
-                }))
-                .then(_.promise.done(done))
-                .catch(done)
+                })
+                .end(done, {})
         })
         it("dictionary", function(done) {
-            _.promise.make({
+            _.promise({
                 "value": 10,
             })
-                .then(_.promise.block(sd => {
+                .make(sd => {
                     assert.deepEqual(sd.value, 10);
-                }))
-                .then(_.promise.done(done))
-                .catch(done)
+                })
+                .end(done, {})
         })
         it("asynchronous function", function(done) {
-            const _change_sync = _.promise.make((self, done) => {
+            const _change_sync = _.promise((self, done) => {
                 self.value = 20;
                 done(null, self);
             })
 
             let previous;
 
-            _.promise.make({
+            _.promise({
                 "value": 10,
             })
                 .then(sd => {
@@ -47,21 +45,20 @@ describe("promise/make", function() {
                     return sd;
                 })
                 .then(_change_sync)
-                .then(_.promise.block(sd => {
+                .make(sd => {
                     assert.deepEqual(sd.value, 20);
                     assert.deepEqual(previous.value, 10);
-                }))
-                .then(_.promise.done(done))
-                .catch(done)
+                })
+                .end(done, {})
         })
         it("synchronous function", function(done) {
-            const _change_async = _.promise.make(self => {
+            const _change_async = _.promise(self => {
                 self.value = 20;
             })
 
             let previous;
 
-            _.promise.make({
+            _.promise({
                 "value": 10,
             })
                 .then(sd => {
@@ -69,12 +66,34 @@ describe("promise/make", function() {
                     return sd;
                 })
                 .then(_change_async)
-                .then(_.promise.block(sd => {
+                .make(sd => {
                     assert.deepEqual(sd.value, 20);
                     assert.deepEqual(previous.value, 10);
-                }))
-                .then(_.promise.done(done))
-                .catch(done)
+                })
+                .end(done, {})
+        })
+        it("'async' block", function(done) {
+            const _space = async () => {
+                return 20
+            }
+
+            let previous;
+
+            _.promise({
+                "value": 10,
+            })
+                .then(sd => {
+                    previous = sd;
+                    return sd;
+                })
+                .make(async sd => {
+                    sd.value = await _space()
+                })
+                .make(sd => {
+                    assert.deepEqual(sd.value, 20);
+                    assert.deepEqual(previous.value, 10);
+                })
+                .end(done, {})
         })
     })
 })
