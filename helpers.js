@@ -45,7 +45,7 @@ const modules = [
     require('./lib/cfg'),
     require('./lib/promise'),
     require('./lib/text'),
-    require('./lib/validate'),
+    // require('./lib/validate'),
 ];
 for (var mi in modules) {
     var module = modules[mi];
@@ -54,6 +54,7 @@ for (var mi in modules) {
     }
 }
 
+exports.validate = require("./lib/validate").validate
 exports.i = require("./lib/i").i
 exports.p = require("./lib/p").p
 
@@ -82,3 +83,6 @@ exports.make_error = done => error => done(error);
 
 // this should be deleted?
 exports.counter = require("./counter").counter;
+
+// testing only
+exports.QUIET = false
