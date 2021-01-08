@@ -4,6 +4,8 @@ Lots of useful functions, built as an overlay on <strike>underscore</strike>loda
 
 <img src="https://raw.githubusercontent.com/dpjanes/iotdb-homestar/master/docs/HomeStar.png" align="right" />
 
+Now Bluebird / Async / Q free - 2020-01-08
+
 # Introduction
 
 These are tons of little useful functions. 
