@@ -1,25 +1,25 @@
 {
-    "author": "David P. Janes <davidjanes@iotdb.org> (https://iotdb.org)",
+    "author": "David P. Janes <davidjanes@iotdb.org> (https://iotdb.org)", 
     "bugs": {
         "url": "https://github.com/dpjanes/iotdb-helpers/issues"
-    },
+    }, 
     "dependencies": {
-        "lodash": "~4.17.20",
+        "lodash": "~4.17.20", 
         "uuid": "~8.3.2"
-    },
-    "description": "pipe-oriented programming - core code",
-    "homepage": "https://github.com/dpjanes/node-iotdb",
-    "license": "Apache-2.0",
-    "main": "helpers.js",
-    "name": "iotdb-helpers",
-    "private": false,
+    }, 
+    "description": "pipe-oriented programming - core code", 
+    "homepage": "https://github.com/dpjanes/node-iotdb", 
+    "license": "Apache-2.0", 
+    "main": "helpers.js", 
+    "name": "iotdb-helpers", 
+    "private": false, 
     "repository": {
-        "type": "git",
+        "type": "git", 
         "url": "https://github.com/dpjanes/iotdb-helpers"
-    },
+    }, 
     "scripts": {
-        "cover": "nyc --reporter=html mocha --recursive",
+        "cover": "nyc --reporter=html mocha --recursive", 
         "test": "mocha --recursive --bail"
-    },
-    "version": "3.5.4"
+    }, 
+    "version": "3.5.5"
 }
