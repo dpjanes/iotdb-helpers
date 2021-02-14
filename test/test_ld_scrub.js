@@ -35,16 +35,16 @@ describe('test_ld', function() {
         it('@context with match', function() {
             const input = {
                 "@context": {
-                    "schema:": "https://schema.org/",
-                    "rdf:": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
-                    "rdfs:": "http://www.w3.org/2000/01/rdf-schema#",
+                    "schema": "http://schema.org/",
+                    "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+                    "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
                 },
                 "schema:name": "David",
             };
             const result = _.ld.scrub(input);
             const expected = {
                 "@context": {
-                    "schema:": "https://schema.org/",
+                    "schema": "http://schema.org/",
                 },
                 "schema:name": "David",
             };
@@ -54,16 +54,16 @@ describe('test_ld', function() {
         it('@context - doesnt make an effort to convert expanded strings', function() {
             const input = {
                 "@context": {
-                    "schema:": "https://schema.org/",
-                    "rdf:": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
-                    "rdfs:": "http://www.w3.org/2000/01/rdf-schema#",
+                    "schema": "http://schema.org/",
+                    "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+                    "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
                 },
-                "https://schema.org/name": "David",
+                "http://schema.org/name": "David",
             };
             const result = _.ld.scrub(input);
             const expected = {
                 "@context": {},
-                "https://schema.org/name": "David",
+                "http://schema.org/name": "David",
             };
 
             assert.deepEqual(expected, result);
@@ -71,16 +71,16 @@ describe('test_ld', function() {
         it('@context with @type', function() {
             const input = {
                 "@context": {
-                    "schema:": "https://schema.org/",
-                    "rdf:": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
-                    "rdfs:": "http://www.w3.org/2000/01/rdf-schema#",
+                    "schema": "http://schema.org/",
+                    "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+                    "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
                 },
                 "@type": "schema:Bla",
             };
             const result = _.ld.scrub(input);
             const expected = {
                 "@context": {
-                    "schema:": "https://schema.org/",
+                    "schema": "http://schema.org/",
                 },
                 "@type": "schema:Bla",
             };
